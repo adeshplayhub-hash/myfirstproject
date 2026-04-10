@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Gallery</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f2f4f8;
+}
+
+/* Container */
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+    text-align:center;
+}
+
+h2{
+    font-size:32px;
+}
+
+.underline{
+    width:90px;
+    height:4px;
+    background:#007bff;
+    margin:10px auto 25px;
+}
+
+/* Filter Buttons */
+.filters{
+    margin-bottom:30px;
+}
+
+.filters button{
+    padding:10px 20px;
+    margin:5px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    background:#ddd;
+    font-size:15px;
+}
+
+.filters button.active,
+.filters button:hover{
+    background:#007bff;
+    color:white;
+}
+
+/* Gallery */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.gallery img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:15px;
+    cursor:pointer;
+    transition:0.4s;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+
+.gallery img:hover{
+    transform:scale(1.08);
+}
+
+/* Lightbox */
+#lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:999;
+}
+
+#lightbox img{
+    max-width:90%;
+    max-height:80%;
+    border-radius:12px;
+    animation:zoom .4s;
+}
+
+@keyframes zoom{
+    from{transform:scale(.6);}
+    to{transform:scale(1);}
+}
+
+#caption{
+    color:white;
+    margin-top:10px;
+}
+
+/* Controls */
+.close,.prev,.next{
+    position:absolute;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
+}
+
+.close{top:20px;right:30px;}
+.prev{left:30px;top:50%;}
+.next{right:30px;top:50%;}
+
+/* Slideshow */
+.slideshow{
+    margin-top:15px;
+}
+
+.slideshow button{
+    padding:8px 16px;
+    border:none;
+    border-radius:20px;
+    background:#007bff;
+    color:white;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>School Gallery</h2>
+    <div class="underline"></div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <button class="active" onclick="filterImages('all')">All</button>
+        <button onclick="filterImages('event')">Events</button>
+        <button onclick="filterImages('sports')">Sports</button>
+        <button onclick="filterImages('teacher')">Teachers</button>
+    </div>
+
+    <!-- Gallery -->
+    <div class="gallery">
+        <img src="images/a5.jpg" data-category="event" alt="School Event">
+        <img src="images/a6.jpg" data-category="event" alt="Annual Function">
+        <img src="images/a04.jpg" data-category="sports" alt="Sports Day">
+        <img src="images/a03.jpg" data-category="sports" alt="Playground">
+        <img src="images/a10.png" data-category="event" alt="Classroom">
+        <img src="images/rajeev sir.png" data-category="teacher" alt="Teacher">
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+    <span class="close">&times;</span>
+    <span class="prev">&#10094;</span>
+    <img id="lightbox-img">
+    <span class="next">&#10095;</span>
+    <div id="caption"></div>
+
+    <div class="slideshow">
+        <button onclick="toggleSlide()">▶ Play / ⏸ Pause</button>
+    </div>
+</div>
+
+<script>
+const images=document.querySelectorAll(".gallery img");
+const lightbox=document.getElementById("lightbox");
+const lbImg=document.getElementById("lightbox-img");
+const caption=document.getElementById("caption");
+let index=0,slide;
+
+images.forEach((img,i)=>{
+    img.onclick=()=>openLightbox(i);
+});
+
+function openLightbox(i){
+    index=i;
+    lightbox.style.display="flex";
+    show();
+}
+
+function show(){
+    lbImg.src=images[index].src;
+    caption.textContent=images[index].alt;
+}
+
+document.querySelector(".close").onclick=()=>{lightbox.style.display="none";clearInterval(slide);};
+
+document.querySelector(".next").onclick=()=>{index=(index+1)%images.length;show();};
+document.querySelector(".prev").onclick=()=>{index=(index-1+images.length)%images.length;show();};
+
+function toggleSlide(){
+    if(slide){
+        clearInterval(slide);
+        slide=null;
+    }else{
+        slide=setInterval(()=>{document.querySelector(".next").click();},2000);
+    }
+}
+
+/* Filter */
+function filterImages(cat){
+    images.forEach(img=>{
+        img.style.display=(cat==="all"||img.dataset.category===cat)?"block":"none";
+    });
+
+    document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+    event.target.classList.add("active");
+}
+</script>
+
+</body>
+</html>

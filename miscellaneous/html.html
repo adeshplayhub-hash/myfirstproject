@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-User Chat with Login</title>
+<style>
+body{margin:0;font-family:sans-serif;background:#ece5dd;height:100vh;overflow:hidden;}
+
+/* ===== MODAL LOGIN ===== */
+.modal{background:#fff;padding:30px;border-radius:12px;width:350px;box-shadow:0 4px 20px rgba(0,0,0,0.2);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.modal h1{text-align:center;margin-bottom:20px;color:#075e54;}
+.modal input{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ccc;}
+.modal button{width:100%;padding:10px;margin:10px 0;border:none;border-radius:6px;background:#128c7e;color:white;cursor:pointer;font-size:16px;}
+.modal button:hover{opacity:0.9;}
+.toggle{color:#128c7e;cursor:pointer;font-size:14px;text-align:center;margin-top:5px;}
+
+/* ===== NAVBAR ===== */
+.navbar{position:fixed;top:0;left:0;width:100%;height:60px;background:#075e54;color:#fff;display:flex;align-items:center;padding:0 20px;z-index:100;display:none;}
+.navbar img{width:40px;height:40px;border-radius:50%;margin-right:10px;}
+.navbar button{margin-left:10px;padding:6px 12px;border:none;border-radius:5px;background:#25d366;color:white;cursor:pointer;}
+
+/* ===== WRAPPER ===== */
+.wrapper{display:flex;width:100%;margin-top:60px;height:calc(100% - 60px);display:none;}
+
+/* ===== SIDEBAR ===== */
+.sidebar{width:300px;background:#075e54;color:#fff;display:flex;flex-direction:column;}
+.sidebar h2{text-align:center;padding:15px 0;background:#128c7e;margin:0;}
+.contact{padding:10px 15px;display:flex;align-items:center;cursor:pointer;transition:0.3s;border-bottom:1px solid #128c7e;position:relative;}
+.contact:hover{background:#128c7e;}
+.contact img{width:40px;height:40px;border-radius:50%;margin-right:10px;}
+.contact .status{width:10px;height:10px;border-radius:50%;margin-left:auto;}
+.contact.online .status{background:#25d366;}
+.contact.offline .status{background:#ccc;}
+.contact .notifDot{width:10px;height:10px;border-radius:50%;background:red;position:absolute;top:12px;right:12px;display:none;}
+
+/* ===== MAIN CHAT ===== */
+.mainchat{flex:1;background:#ece5dd;display:flex;flex-direction:column;}
+.chat-header{height:60px;background:#128c7e;color:#fff;display:flex;align-items:center;padding:0 20px;}
+.chat-header img{width:40px;height:40px;border-radius:50%;margin-right:10px;}
+.chat-body{flex:1;padding:20px;overflow-y:auto;display:flex;flex-direction:column;}
+.message{padding:8px 12px;border-radius:12px;margin-bottom:10px;max-width:60%;position:relative;}
+.message.self{background:#dcf8c6;align-self:flex-end;}
+.message.other{background:#fff;align-self:flex-start;}
+.message-time{font-size:10px;color:#999;position:absolute;bottom:2px;right:5px;}
+.chat-footer{display:flex;padding:10px;background:#f0f0f0;}
+.chat-footer input{flex:1;padding:10px;border-radius:20px;border:none;margin-right:10px;}
+.chat-footer button{padding:10px 20px;border:none;border-radius:20px;background:#128c7e;color:white;cursor:pointer;}
+
+/* ===== NOTIFICATION ===== */
+#notifPopup{position:fixed;top:10px;right:10px;background:#128c7e;color:white;padding:10px 20px;border-radius:8px;display:none;z-index:300;}
+</style>
+</head>
+<body>
+
+<!-- ===== Notification Pop-up ===== -->
+<div id="notifPopup"></div>
+
+<!-- ===== NAVBAR ===== -->
+<div class="navbar" id="navbar">
+  <img id="navUserPhoto" src="https://via.placeholder.com/40">
+  <span id="navUserName"></span>
+  <span id="userCount" style="margin-left:15px;"></span>
+  <button onclick="editProfile()">Edit Profile</button>
+  <button class="logout" onclick="logoutUser()">Logout</button>
+</div>
+
+<!-- ===== WRAPPER ===== -->
+<div class="wrapper" id="chatWrapper">
+  <div class="sidebar">
+    <h2>Contacts</h2>
+    <div id="contactList"></div>
+  </div>
+
+  <div class="mainchat">
+    <div class="chat-header">
+      <img src="https://via.placeholder.com/40" id="chatUserPhoto">
+      <span id="chatUserName">Select User</span>
+    </div>
+    <div class="chat-body" id="chatBody"></div>
+    <div class="chat-footer">
+      <input type="text" id="chatInput" placeholder="Type a message">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL LOGIN / REGISTER / FORGET ===== -->
+<div class="modal" id="authModal">
+  <h1>Login / Register / Forget</h1>
+
+  <div id="loginDiv">
+    <input id="phone" placeholder="Mobile Number">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="loginUser()">Login</button>
+    <div class="toggle" onclick="showRegister()">Don't have account? Register</div>
+    <div class="toggle" onclick="showForget()">Forgot Password?</div>
+  </div>
+
+  <div id="registerDiv" style="display:none;">
+    <input id="rname" placeholder="Full Name">
+    <input id="rphone" placeholder="Mobile Number">
+    <input id="rpass" type="password" placeholder="Password">
+    <button onclick="registerUser()">Register</button>
+    <div class="toggle" onclick="showLogin()">Already have account? Login</div>
+  </div>
+
+  <div id="forgetDiv" style="display:none;">
+    <input id="fphone" placeholder="Mobile Number">
+    <input id="fnewpass" type="password" placeholder="New Password">
+    <button onclick="forgetPassword()">Reset Password</button>
+    <div class="toggle" onclick="showLogin()">Back to Login</div>
+  </div>
+</div>
+
+<script>
+// ===== STORAGE =====
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let messages = JSON.parse(localStorage.getItem("messages")) || {};
+let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+let selectedUser = null;
+
+// ===== PANEL SWITCH =====
+function showLogin(){ loginDiv.style.display="block"; registerDiv.style.display="none"; forgetDiv.style.display="none"; }
+function showRegister(){ loginDiv.style.display="none"; registerDiv.style.display="block"; forgetDiv.style.display="none"; }
+function showForget(){ loginDiv.style.display="none"; registerDiv.style.display="none"; forgetDiv.style.display="block"; }
+
+// ===== REGISTER =====
+function registerUser(){
+  let name=rname.value, phone=rphone.value, pass=rpass.value;
+  if(!name||!phone||!pass){ alert("Fill all fields"); return;}
+  if(users.find(u=>u.phone===phone)){ alert("User exists"); return;}
+  users.push({name:name,phone:phone,pass:pass,photo:"https://via.placeholder.com/40",online:false,notif:0});
+  localStorage.setItem("users",JSON.stringify(users));
+  alert("Registered successfully! Login now."); showLogin();
+}
+
+// ===== LOGIN =====
+function loginUser(){
+  let phoneVal=phone.value, passVal=password.value;
+  let user=users.find(u=>u.phone===phoneVal && u.pass===passVal);
+  if(!user){ alert("Wrong credentials"); return;}
+  currentUser=user; currentUser.online=true;
+  localStorage.setItem("currentUser",JSON.stringify(currentUser));
+  loginSuccess();
+}
+
+// ===== FORGET PASSWORD =====
+function forgetPassword(){
+  let phoneVal=fphone.value, newPass=fnewpass.value;
+  let user=users.find(u=>u.phone===phoneVal);
+  if(!user){ alert("User not found"); return;}
+  if(!newPass){ alert("Enter new password"); return;}
+  user.pass=newPass;
+  users=users.map(u=>u.phone===phoneVal?user:u);
+  localStorage.setItem("users",JSON.stringify(users));
+  alert("Password reset! Login now."); showLogin();
+}
+
+// ===== LOGIN SUCCESS =====
+function loginSuccess(){
+  authModal.style.display="none";
+  navbar.style.display="flex";
+  chatWrapper.style.display="flex";
+  displayNavbar();
+  displayContacts();
+}
+
+// ===== NAVBAR =====
+function displayNavbar(){
+  navUserName.innerText=currentUser.name;
+  navUserPhoto.src=currentUser.photo;
+  let onlineCount = users.filter(u=>u.online && u.phone!==currentUser.phone).length;
+  userCount.innerText=`Users: ${users.length} | Online: ${onlineCount}`;
+}
+
+// ===== CONTACTS =====
+function displayContacts(){
+  contactList.innerHTML="";
+  users.forEach(u=>{
+    if(u.phone!==currentUser.phone){
+      let div=document.createElement("div");
+      div.className="contact "+(u.online?"online":"offline");
+      div.innerHTML=`
+        <img src="${u.photo}">
+        <span>${u.name}</span>
+        <div class="status"></div>
+        <div class="notifDot"></div>
+      `;
+      div.onclick=()=>selectChat(u);
+      if(u.notif && u.notif>0) div.querySelector(".notifDot").style.display="block";
+      contactList.appendChild(div);
+    }
+  });
+  displayNavbar();
+}
+
+// ===== SELECT CHAT =====
+function selectChat(u){
+  selectedUser=u;
+  chatUserName.innerText=u.name;
+  chatUserPhoto.src=u.photo;
+  u.notif=0;
+  displayContacts();
+  displayMessages();
+}
+
+// ===== DISPLAY MESSAGES =====
+function displayMessages(){
+  if(!selectedUser) return;
+  let chatKey=[currentUser.phone,selectedUser.phone].sort().join("_");
+  let msgs=messages[chatKey]||[];
+  chatBody.innerHTML="";
+  msgs.forEach(m=>{
+    let div=document.createElement("div");
+    div.className="message "+(m.sender===currentUser.phone?"self":"other");
+    div.innerHTML=`${m.text}<span class="message-time">${m.time}</span>`;
+    chatBody.appendChild(div);
+  });
+  chatBody.scrollTop=chatBody.scrollHeight;
+}
+
+// ===== SEND MESSAGE =====
+function sendMessage(){
+  if(!chatInput.value||!selectedUser) return;
+  let chatKey=[currentUser.phone,selectedUser.phone].sort().join("_");
+  if(!messages[chatKey]) messages[chatKey]=[];
+  let time=new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  
+  messages[chatKey].push({sender:currentUser.phone,text:chatInput.value,time:time});
+  localStorage.setItem("messages",JSON.stringify(messages));
+  
+  displayMessages();
+  selectedUser.notif+=1;
+  displayContacts();
+  if(selectedUser.online) showProfileNotification(selectedUser, chatInput.value);
+  chatInput.value="";
+}
+
+// ===== PROFILE NOTIFICATION POPUP =====
+function showProfileNotification(user, msg){
+  let notif = document.createElement("div");
+  notif.style.position="fixed";
+  notif.style.top="10px";
+  notif.style.right="10px";
+  notif.style.background="#128c7e";
+  notif.style.color="white";
+  notif.style.padding="10px 20px";
+  notif.style.borderRadius="8px";
+  notif.style.boxShadow="0 2px 8px rgba(0,0,0,0.3)";
+  notif.style.zIndex="500";
+  notif.innerText=`New message from ${currentUser.name}: ${msg}`;
+  document.body.appendChild(notif);
+  setTimeout(()=>{
+    notif.remove();
+    let receiver = users.find(u=>u.phone===user.phone);
+    if(receiver) receiver.notif=0;
+    displayContacts();
+  },5000);
+}
+
+// ===== EDIT PROFILE =====
+function editProfile(){
+  let newName=prompt("Enter Name:",currentUser.name); if(newName) currentUser.name=newName;
+  let newPhoto=prompt("Photo URL:",currentUser.photo); if(newPhoto) currentUser.photo=newPhoto;
+  localStorage.setItem("currentUser",JSON.stringify(currentUser));
+  users=users.map(u=>u.phone===currentUser.phone?currentUser:u);
+  localStorage.setItem("users",JSON.stringify(users));
+  displayNavbar();
+  displayContacts();
+}
+
+// ===== LOGOUT =====
+function logoutUser(){
+  currentUser.online=false;
+  users=users.map(u=>u.phone===currentUser.phone?currentUser:u);
+  localStorage.setItem("users",JSON.stringify(users));
+  currentUser=null;
+  localStorage.removeItem("currentUser");
+  location.reload();
+}
+
+// ===== AUTO LOGIN =====
+if(currentUser){ currentUser.online=true; loginSuccess(); }
+
+</script>
+
+</body>
+</html>

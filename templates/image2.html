@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Gallery</title>
+
+<style>
+
+
+
+
+
+
+
+
+
+
+
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root{
+    --primary:#1e88e5;
+    --secondary:#0d47a1;
+    --accent:#ff9800;
+    --light:#f5f7fb;
+    --dark:#121212;
+    --text:#333;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:var(--light);
+    color:var(--text);
+    line-height:1.6;
+    transition:0.4s ease;
+}
+
+/* =============================
+   Dark Mode
+   ============================= */
+body.dark-mode{
+    background:#0f172a;
+    color:#e5e7eb;
+}
+
+body.dark-mode .container,
+body.dark-mode header,
+body.dark-mode .navbar,
+body.dark-mode footer{
+    background:#020617;
+}
+
+body.dark-mode table,
+body.dark-mode th,
+body.dark-mode td{
+    border-color:#334155;
+}
+
+/* =============================
+   Header Banner
+   ============================= */
+.header-banner{
+    background:linear-gradient(135deg,var(--secondary),var(--primary));
+    padding:10px 0;
+}
+
+.developer-info{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    color:#fff;
+    animation:slideDown 1.2s ease;
+}
+
+.developer-photo-frame{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    border:3px solid #fff;
+    object-fit:cover;
+}
+
+.developer-text{
+    font-weight:600;
+}
+
+@keyframes slideDown{
+    from{opacity:0;transform:translateY(-20px);} 
+    to{opacity:1;transform:translateY(0);} 
+}
+
+/* =============================
+   Navbar
+   ============================= */
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 40px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.navbar h2{
+    color:var(--primary);
+}
+
+.navbar a{
+    margin:0 12px;
+    text-decoration:none;
+    color:#444;
+    font-weight:500;
+    position:relative;
+}
+
+.navbar a::after{
+    content:'';
+    position:absolute;
+    width:0;
+    height:2px;
+    background:var(--primary);
+    left:0;
+    bottom:-5px;
+    transition:0.3s;
+}
+
+.navbar a:hover::after{
+    width:100%;
+}
+
+.dark-btn{
+    background:var(--primary);
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.dark-btn:hover{opacity:0.9;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root{
+    --bg:#f2f4f8;
+    --text:#000;
+    --card:#fff;
+}
+
+body.dark{
+    --bg:#121212;
+    --text:#fff;
+    --card:#1e1e1e;
+}
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.3s;
+}
+
+/* Container */
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:40px 20px;
+    text-align:center;
+}
+
+h2{font-size:32px;}
+.underline{
+    width:90px;
+    height:4px;
+    background:#007bff;
+    margin:10px auto 20px;
+}
+
+/* Top Controls */
+.top-controls{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:25px;
+}
+
+button{
+    padding:10px 20px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    background:#007bff;
+    color:#fff;
+}
+
+/* Filters */
+.filters button{
+    background:#ccc;
+    color:#000;
+}
+
+.filters button.active{
+    background:#007bff;
+    color:white;
+}
+
+/* Gallery */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.gallery img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:15px;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+    transition:.4s;
+}
+
+.gallery img:hover{
+    transform:scale(1.08);
+}
+
+/* Lightbox */
+#lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.9);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    z-index:999;
+}
+
+#lightbox img{
+    max-width:90%;
+    max-height:75%;
+    border-radius:12px;
+    animation:zoom .4s;
+}
+
+@keyframes zoom{
+    from{transform:scale(.6);}
+    to{transform:scale(1);}
+}
+
+#caption{
+    color:white;
+    margin:10px;
+}
+
+/* Controls */
+.close,.prev,.next{
+    position:absolute;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
+}
+
+.close{top:20px;right:30px;}
+.prev{left:30px;top:50%;}
+.next{right:30px;top:50%;}
+
+/* Bottom Buttons */
+.lb-buttons{
+    display:flex;
+    gap:10px;
+}
+
+.lb-buttons a, .lb-buttons button{
+    background:#007bff;
+    color:white;
+    padding:8px 16px;
+    border-radius:20px;
+    text-decoration:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*=====================*/
+/*----bottom-desing---*/
+/*=====================*/
+
+
+
+.footer1 {
+    margin-top: 8%;
+  background: #06284f;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.footer1-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 80px;
+  flex-wrap: wrap;
+}
+
+.footer1-box {
+  width: 30%;
+}
+
+.footer1-box h3 {
+  margin-bottom: 10px;
+}
+
+.underline1 {
+  width: 50px;
+  height: 3px;
+  background: #ffcc00;
+  margin-bottom: 15px;
+}
+
+.school-logo1 {
+  width: 120px;
+  height: 120px;
+  border-radius: 90%;
+  object-fit: cover;
+  border: 3px solid #ffcc00;
+}
+
+.developer1 img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffcc00;
+}
+
+
+
+.footer1-box p {
+  margin: 6px 0;
+  color: #ddd;
+}
+
+/* Bottom Bar */
+.footer1-bottom {
+  background: #041d3a;
+  padding: 15px 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.developer1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+
+.developer1 span {
+  font-size: 14px;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<!-- Navbar -->
+<div class="navbar fade">
+    <h2>SNRMV School</h2>
+    <div>
+        <a href="Modern.html">Home</a>
+        <a href="image2.html">Gallery</a>
+        <a href="contact.html"> Contact </a>
+        <a href="resitration-form.html"> Student Register</a>
+    </div>
+    <button class="dark-btn" onclick="toggleDark()">Dark Mode</button>
+</div>
+
+
+
+
+
+
+
+
+
+<!---======================-->
+     <!--- top--->
+<!---======================-->
+
+
+<script>
+function toggleDark() {
+    document.body.classList.toggle("dark-mode");
+
+    // Save preference
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+    } else {
+        localStorage.setItem("theme", "light");
+    }
+}
+
+// Load saved theme on page load
+window.onload = function () {
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+};
+</script>
+
+
+
+
+
+
+
+
+
+
+<div class="container">
+    <h2>School Gallery</h2>
+    <div class="underline"></div>
+
+    <div class="top-controls">
+      
+
+        <div class="filters">
+            <button class="active" onclick="filterImages('all')">All</button>
+            <button onclick="filterImages('event')">Events</button>
+            <button onclick="filterImages('sports')">Sports</button>
+            <button onclick="filterImages('teacher')">Teachers</button>
+        </div>
+    </div>
+
+    <div class="gallery">
+        <img src="images/a5.jpg" data-category="event" alt="School Event">
+        <img src="images/a6.jpg" data-category="event" alt="Annual Function">
+        <img src="images/a04.jpg" data-category="sports" alt="Sports Day">
+        <img src="./event/ekozcawvs5ci2usf3bjq.jpg" data-category="event" alt="School Event">
+        <img src="./event/xqmyjjzfq6xzvgyogy5h.jpg" data-category="event" alt="School Event">
+        <img src="images/a03.jpg" data-category="sports" alt="Playground">
+        <img src="images/a10.png" data-category="event" alt="Classroom">
+        <img src="images/rajeev sir.png" data-category="teacher" alt="Teacher">
+       <img src="./teacher/zwmxrk0lekb0ljm35r61.jpg" data-category="teacher" alt="Teacher">
+        <img src="./teacher/bedye3w3oz2ez7ajtgbr.jpg" data-category="teacher" alt="Teacher">
+        <img src="./teacher/g2iu09igetsukzw9hlry.png" data-category="teacher" alt="Teacher">
+        <img src="./teacher/prm34irvzzg4ympsl60o.jpg" data-category="teacher" alt="Teacher">
+        <img src="./teacher/rrquooogchtbvm2bqdqu.png" data-category="teacher" alt="Teacher">
+        <img src="./teacher/viwlhativ1gdwuf7bv6q.jpg" data-category="teacher" alt="Teacher">
+    
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+    <span class="close">&times;</span>
+    <span class="prev">&#10094;</span>
+    <img id="lbImg">
+    <span class="next">&#10095;</span>
+    <div id="caption"></div>
+
+    <div class="lb-buttons">
+        <a id="download" download>⬇ Download</a>
+        <button onclick="toggleSlide()">▶ Slideshow</button>
+    </div>
+</div>
+
+<script>
+const imgs=document.querySelectorAll(".gallery img");
+const lightbox=document.getElementById("lightbox");
+const lbImg=document.getElementById("lbImg");
+const caption=document.getElementById("caption");
+const download=document.getElementById("download");
+let index=0,slide;
+
+/* Open */
+imgs.forEach((img,i)=>{
+    img.onclick=()=>openLB(i);
+});
+
+function openLB(i){
+    index=i;
+    lightbox.style.display="flex";
+    show();
+}
+
+function show(){
+    lbImg.src=imgs[index].src;
+    caption.textContent=imgs[index].alt;
+    download.href=imgs[index].src;
+}
+
+/* Controls */
+document.querySelector(".close").onclick=()=>{lightbox.style.display="none";clearInterval(slide);};
+document.querySelector(".next").onclick=()=>{index=(index+1)%imgs.length;show();};
+document.querySelector(".prev").onclick=()=>{index=(index-1+imgs.length)%imgs.length;show();};
+
+function toggleSlide(){
+    slide ? (clearInterval(slide),slide=null)
+          : slide=setInterval(()=>document.querySelector(".next").click(),2000);
+}
+
+/* Filter */
+function filterImages(cat){
+    imgs.forEach(img=>{
+        img.style.display=(cat==="all"||img.dataset.category===cat)?"block":"none";
+    });
+    document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
+    event.target.classList.add("active");
+}
+
+/* Dark Mode */
+function toggleMode(){
+    document.body.classList.toggle("dark");
+}
+
+/* Keyboard */
+document.addEventListener("keydown",e=>{
+    if(lightbox.style.display==="flex"){
+        if(e.key==="ArrowRight")document.querySelector(".next").click();
+        if(e.key==="ArrowLeft")document.querySelector(".prev").click();
+        if(e.key==="Escape")document.querySelector(".close").click();
+    }
+});
+</script>
+
+
+
+
+
+<!----------==============================================------------>
+<!--========================--bottom-desing--======================---->
+<!------------============================================------------>
+
+
+    <footer class="footer1">
+  <div class="footer1-container">
+
+    <!-- School Info -->
+    <div class="footer1-box">
+      <h3>Shree Nepal National seconday School Baderwa,Parsa</h3>
+      <div class="underline1"></div>
+      <img src="./logo.jpg" alt="School Logo" class="school-logo1">
+    </div>
+
+    <!-- Time Schedule -->
+    <div class="footer1-box">
+      <h3>School Time Schedule</h3>
+      <div class="underline1"></div>
+      <p>We work 6 days a week, Please contact us for any inquiry.</p>
+      <p><strong>Sunday – Friday:</strong> 08:40 AM to 04:00 PM</p>
+      <p><strong>Saturday:</strong> Holiday</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="foote1r-box">
+      <h3>Contact Us</h3>
+      <div class="underline1"></div>
+      <p>📞 Phone : 9762189804</p>
+      <p>✉ Email : adeshmahato1123@gmail.com</p>
+      <p>📍 Location : manwa ,parsa</p>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer1-bottom">
+    <div class="developer1">
+      <img src="./adesh.jpg" alt="Developer Logo">
+      <span>Developed & Powered by <b>ADESH CHAUDHARY</b></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

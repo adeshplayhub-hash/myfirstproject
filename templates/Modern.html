@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SNRMV School Website5</title>
+
+<link rel="stylesheet" href="../assets/css/hello2.css">
+<script>
+function toggleDark(){
+    document.body.classList.toggle('dark-mode');
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    // Hide developer info after 5 seconds
+    setTimeout(() => {
+        const devInfo = document.getElementById('developer-info');
+        if (devInfo) {
+            devInfo.style.opacity = '0';
+            setTimeout(() => devInfo.style.display = 'none', 1500);
+        }
+    }, 8050);
+});
+</script>
+</head>
+<body>
+
+<!-- Header Banner -->
+<div class="header-banner">
+    <div class="developer-info" id="developer-info">
+        
+        
+        <img src="../assets/images/templates/adesh.jpg" alt="Adesh Chaudhary" class="developer-photo-frame">
+        Developed By:<div class="developer-text"> Adesh Chaudhary</div>
+       
+        
+    </div>
+</div>
+
+<!-- Navbar -->
+<div class="navbar fade">
+    <h2>SNRMV School</h2>
+    <div>
+        <a href="Modern.html">Home</a>
+        <a href="image2.html">Gallery</a>
+        <a href="contact.html"> Contact </a>
+        <a href="resitration-form.html"> Student Register</a>
+    </div>
+    <button class="dark-btn" onclick="toggleDark()">Dark Mode</button>
+</div>
+
+<!-- Header -->
+<header>
+    <h1>Shree Nepal Rastriya Secondary School, Baderwa</h1>
+    <a href="https://snrmv.edu.np/">School Website</a> |
+    <a href="https://www.facebook.com/snrmv.baderwa">Facebook Page</a>
+</header>
+
+
+
+<!-- Slider section in Notice bode-->
+       <div class="slider-box">
+  <span class="notice-label">NOTICE</span>
+
+  <div class="slider">
+    <div class="slide-track">
+      <span>Technical teachers will come in morning shift from tomorrow.</span>
+      <span>Students please clear your exam fees on time.</span>
+      <span>Second Term Exam is starting from this Wednesday.</span>
+      <span>कक्षा ८ उत्तीर्ण विद्यार्थीले समयमा सिट सुरक्षित गर्न आग्रह।</span>
+      <span>शिक्षा नीतिको पुकार, प्राविधिक शिक्षा सबैको अधिकार !</span>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Principal Message -->
+
+
+<div class="container">
+    <h2>MESSAGE FROM PRINCIPAL</h2>
+    <div class="underline"></div>
+
+    <div class="content-box">
+
+        <img src="../assets/images/templates/a10.png" alt="Principal Image">
+
+       <div class="text">
+            <div class="name">CHETMAN PRASAD DAS</div>
+            <div class="name-line"></div>
+
+
+
+            <p>
+                Dear Guardians and Students, It’s our great pleasure and honor 
+                to welcome you to our school! At <b>Shree Nepal Rastriya Secondary 
+                School - snrmv, Parsagadhi Municipality-9, Baderwa, Parsa</b>, we are 
+                dedicated to creating an environment that nurtures curiosity, fosters 
+                creativity, and inspires lifelong learning.
+            </p>
+
+            <p>
+                Our mission is to provide a holistic education that empowers every 
+                student to realize their full potential, both academically and 
+                personally. With a strong focus on excellence, character development, 
+                and community, we aim to shape responsible and compassionate individuals 
+                ready to make a positive impact on the world.
+            </p>
+
+            <p>Best wishes!</p>
+        </div>
+    </div>
+</div><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- School Gallery -->
+  <div class="container3">
+    <div class="card-body">
+      <div class="card3" data-title="Ritesh Sir">
+        <img src="https://res.cloudinary.com/rajeevyadav/image/upload/v1764224532/school-gallery/ihfghktzijgztrfgnvsi.jpg" />
+      </div>
+     
+      <div class="card3" data-title="Rajev Sir">
+        <img src="https://res.cloudinary.com/rajeevyadav/image/upload/v1763919129/school/pmkbf6hpufvc88ptugip.webp" />
+      </div>
+          <div class="card3" data-title="Ujwal Sir">
+        <img src="https://res.cloudinary.com/rajeevyadav/image/upload/v1765296613/school-uploads/bedye3w3oz2ez7ajtgbr.jpg" />
+      </div>
+      <div class="card3" data-title="Principal Miss">
+        <img src="https://res.cloudinary.com/rajeevyadav/image/upload/v1764514343/school-uploads/nosgusqw3xt1pehundhw.jpg" />
+      </div>
+      <div class="card3" data-title="Principal Sir">
+        <img src="https://res.cloudinary.com/rajeevyadav/image/upload/v1763919288/school/nyipietrmjspmu7zs51c.png" />
+      </div>
+        
+       
+
+      </div>
+    </div>
+  </div>
+<script>
+  const cards = document.querySelectorAll(".card3");
+  const cardBody = document.querySelector(".card-body");
+
+  cards.forEach(card => {
+    card.addEventListener("click", () => {
+      cardBody.classList.add("active");
+      cards.forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+    });
+  });
+
+  cardBody.addEventListener("dblclick", () => {
+    cardBody.classList.remove("active");
+    cards.forEach(c => c.classList.remove("active"));
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+<!-- School Video -->
+<div class="container" id="video">
+    <h2>School Video</h2>
+    <div class="underline"></div>
+    <video controls>
+        <source src="../assets/images/templates/Thoda Sa Pyaar × Kyaa Dil Ne Kahaa _ Battle of The Millennium _ Remix Version 2024.mp4" type="video/mp4">
+    </video>
+</div>
+
+<!-- Student Registration Table -->
+<div class="container" id="register">
+    <h2>Student Registration Table</h2>
+
+    <div class="underline"></div>
+    <table>
+        <tr>
+            <th>S.N</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Roll No.</th>
+            <th>Father Name</th>
+            <th>Mother Name</th>
+        </tr>
+        <tr><td>1</td><td>Amit</td><td>9(B)</td><td>8</td><td>A</td><td>B</td></tr>
+        <tr><td>2</td><td>Aakash</td><td>9(B)</td><td>31</td><td>C</td><td>D</td></tr>
+        <tr><td>3</td><td>Ramesh Patel</td><td>9(B)</td><td>12</td><td>E</td><td>F</td></tr>
+        <tr><td>4</td><td>Manish</td><td>9(B)</td><td>15</td><td>G</td><td>H</td></tr>
+        <tr><td>5</td><td>Subash</td><td>9(B)</td><td>9</td><td>I</td><td>J</td></tr>
+    </table>
+</div>
+
+
+
+<!-- Login Panel -->
+   <h2 class="h22"> Login panel</h2>
+    <div class="adesh">
+  <input required="" type="text" name="text" class="input">
+  <label class="label">Email Id</label>
+    
+ 
+</div>
+      <br>
+        <br>
+    
+    
+      <div class="adesh">
+  <input required="" type="text" name="text" class="input">
+  <label class="label">Password</label><br>
+    
+ 
+</div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <button class="adesh2">
+  <svg xmlns="http://www.w3.org/2000/svg">
+    <rect class="border" pathLength="100"></rect>
+    <rect class="loading" pathLength="100"></rect>
+      class="done-svg"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path
+        class="done done-cloud"
+        pathLength="100"
+        d="M 6.5,20 Q 4.22,20 2.61,18.43 1,16.85 1,14.58 1,12.63 2.17,11.1 3.35,9.57 5.25,9.15 5.88,6.85 7.75,5.43 9.63,4 12,4 14.93,4 16.96,6.04 19,8.07 19,11 q 1.73,0.2 2.86,1.5 1.14,1.28 1.14,3 0,1.88 -1.31,3.19 Q 20.38,20 18.5,20 Z"
+      ></path>
+      <path
+        class="done done-check"
+        pathLength="100"
+        d="M 7.515,12.74 10.34143,15.563569 15.275,10.625"
+      ></path>
+    </svg>
+  </svg>
+  <div class="txt-upload">Sing in</div>
+</button>
+
+
+
+
+
+
+
+
+
+<!-- User Registration Form -->
+<h2 class="h222"> Registration form</h2>
+ 
+<div class="nebula-input">
+ 
+  <input required="" type="text" name="text" autocomplete="off" class="input" />
+  <label class="user-label">Name</label>
+  <div class="nebula-particle" style="--x:0.2; --y:-0.4; --delay:0.1s"></div>
+  <div class="nebula-particle" style="--x:0.5; --y:-0.2; --delay:0.3s"></div>
+  <div class="nebula-particle" style="--x:0.3; --y:0.3; --delay:0.5s"></div>
+  <div class="nebula-particle" style="--x:0.7; --y:0.1; --delay:0.2s"></div>
+  <div class="nebula-particle" style="--x:0.1; --y:-0.7; --delay:0.4s"></div>
+  <div class="nebula-particle" style="--x:0.6; --y:0.4; --delay:0.6s"></div>
+</div>
+
+
+
+<div class="nebula-input">
+ 
+  <input required="" type="text" name="text" autocomplete="off" class="input" />
+  <label class="user-label">Class</label>
+  <div class="nebula-particle" style="--x:0.2; --y:-0.4; --delay:0.1s"></div>
+  <div class="nebula-particle" style="--x:0.5; --y:-0.2; --delay:0.3s"></div>
+  <div class="nebula-particle" style="--x:0.3; --y:0.3; --delay:0.5s"></div>
+  <div class="nebula-particle" style="--x:0.7; --y:0.1; --delay:0.2s"></div>
+  <div class="nebula-particle" style="--x:0.1; --y:-0.7; --delay:0.4s"></div>
+  <div class="nebula-particle" style="--x:0.6; --y:0.4; --delay:0.6s"></div>
+</div>
+
+
+<div class="nebula-input">
+ 
+  <input required="" type="text" name="text" autocomplete="off" class="input" />
+  <label class="user-label">Roll No</label>
+  <div class="nebula-particle" style="--x:0.2; --y:-0.4; --delay:0.1s"></div>
+  <div class="nebula-particle" style="--x:0.5; --y:-0.2; --delay:0.3s"></div>
+  <div class="nebula-particle" style="--x:0.3; --y:0.3; --delay:0.5s"></div>
+  <div class="nebula-particle" style="--x:0.7; --y:0.1; --delay:0.2s"></div>
+  <div class="nebula-particle" style="--x:0.1; --y:-0.7; --delay:0.4s"></div>
+  <div class="nebula-particle" style="--x:0.6; --y:0.4; --delay:0.6s"></div>
+</div>
+
+
+<div class="nebula-input">
+ 
+  <input required="" type="text" name="text" autocomplete="off" class="input" />
+  <label class="user-label">Farther Name</label>
+  <div class="nebula-particle" style="--x:0.2; --y:-0.4; --delay:0.1s"></div>
+  <div class="nebula-particle" style="--x:0.5; --y:-0.2; --delay:0.3s"></div>
+  <div class="nebula-particle" style="--x:0.3; --y:0.3; --delay:0.5s"></div>
+  <div class="nebula-particle" style="--x:0.7; --y:0.1; --delay:0.2s"></div>
+  <div class="nebula-particle" style="--x:0.1; --y:-0.7; --delay:0.4s"></div>
+  <div class="nebula-particle" style="--x:0.6; --y:0.4; --delay:0.6s"></div>
+</div>
+
+
+<div class="nebula-input">
+ 
+  <input required="" type="text" name="text" autocomplete="off" class="input" />
+  <label class="user-label">Morther Name</label>
+  <div class="nebula-particle" style="--x:0.2; --y:-0.4; --delay:0.1s"></div>
+  <div class="nebula-particle" style="--x:0.5; --y:-0.2; --delay:0.3s"></div>
+  <div class="nebula-particle" style="--x:0.3; --y:0.3; --delay:0.5s"></div>
+  <div class="nebula-particle" style="--x:0.7; --y:0.1; --delay:0.2s"></div>
+  <div class="nebula-particle" style="--x:0.1; --y:-0.7; --delay:0.4s"></div>
+  <div class="nebula-particle" style="--x:0.6; --y:0.4; --delay:0.6s"></div>
+</div>
+
+
+<div class="nebula-input">
+ 
+  <input required="" type="text" name="text" autocomplete="off" class="input" />
+  <label class="user-label">Address</label>
+  <div class="nebula-particle" style="--x:0.2; --y:-0.4; --delay:0.1s"></div>
+  <div class="nebula-particle" style="--x:0.5; --y:-0.2; --delay:0.3s"></div>
+  <div class="nebula-particle" style="--x:0.3; --y:0.3; --delay:0.5s"></div>
+  <div class="nebula-particle" style="--x:0.7; --y:0.1; --delay:0.2s"></div>
+  <div class="nebula-particle" style="--x:0.1; --y:-0.7; --delay:0.4s"></div>
+  <div class="nebula-particle" style="--x:0.6; --y:0.4; --delay:0.6s"></div>
+</div>
+
+<button class="btn"> Submit
+</button>
+
+
+
+
+
+   
+       
+  
+
+
+
+   
+ 
+  
+
+
+
+
+<!----------==============================================------------>
+<!--========================--bottom-desing--======================---->
+<!------------============================================------------>
+
+
+    <footer class="footer1">
+  <div class="footer1-container">
+
+    <!-- School Info -->
+    <div class="footer1-box">
+      <h3>Shree Nepal National seconday School Baderwa,Parsa</h3>
+      <div class="underline1"></div>
+      <img src="../assets/images/templates/logo.jpg" alt="School Logo" class="school-logo1">
+    </div>
+
+    <!-- Time Schedule -->
+    <div class="footer1-box">
+      <h3>School Time Schedule</h3>
+      <div class="underline1"></div>
+      <p>We work 6 days a week, Please contact us for any inquiry.</p>
+      <p><strong>Sunday – Friday:</strong> 08:40 AM to 04:00 PM</p>
+      <p><strong>Saturday:</strong> Holiday</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="foote1r-box">
+      <h3>Contact Us</h3>
+      <div class="underline1"></div>
+      <p>📞 Phone : 9762189804</p>
+      <p>✉ Email : adeshmahato1123@gmail.com</p>
+      <p>📍 Location : manwa ,parsa</p>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer1-bottom">
+    <div class="developer1">
+      <img src="../assets/images/templates/adesh.jpg" alt="Developer Logo">
+      <span>Developed & Powered by <b>ADESH CHAUDHARY</b></span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

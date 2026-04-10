@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ultra Pro Max Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;scroll-behavior:smooth}
+    :root{
+      --bg1:#001a4d;--bg2:#0d6efd;--bg3:#003b8e;--text:#fff;--muted:#dbeafe;
+      --glass:rgba(255,255,255,.12);--border:rgba(255,255,255,.18);
+    }
+    body{background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3),#001f5c);background-size:400% 400%;animation:gradientMove 14s ease infinite;color:var(--text);overflow-x:hidden}
+    section{padding:90px 8%}
+    .bg-shape{position:fixed;border-radius:50%;background:rgba(255,255,255,.07);z-index:0;animation:float 10s infinite ease-in-out}
+    .s1{width:180px;height:180px;top:8%;left:4%}.s2{width:260px;height:260px;bottom:8%;right:4%;animation-delay:2s}.s3{width:120px;height:120px;top:28%;right:18%;animation-delay:4s}
+    .navbar{position:sticky;top:0;z-index:999;display:flex;justify-content:space-between;align-items:center;padding:18px 8%;backdrop-filter:blur(14px);background:rgba(0,25,80,.35);border-bottom:1px solid rgba(255,255,255,.1)}
+    .logo{font-size:28px;font-weight:800;color:#fff;text-decoration:none}
+    .logo span{color:#bfdbfe}
+    .nav-links{display:flex;gap:24px;flex-wrap:wrap}
+    .nav-links a{color:#fff;text-decoration:none;font-weight:600;position:relative}
+    .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#fff;transition:.3s}
+    .nav-links a:hover::after{width:100%}
+    .hero,.grid-2{display:grid;grid-template-columns:1fr 1.4fr;gap:50px;align-items:center;position:relative;z-index:2}
+    .card{background:var(--glass);border:1px solid var(--border);backdrop-filter:blur(18px);border-radius:28px;box-shadow:0 20px 60px rgba(0,0,0,.28)}
+    .hero-card{padding:35px}
+    .left-side{display:flex;justify-content:center;align-items:center;position:relative;min-height:380px}
+    .ring{position:absolute;width:360px;height:360px;border-radius:50%;border:2px dashed rgba(255,255,255,.35);animation:spin 18s linear infinite}
+    .glow{position:absolute;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.25),rgba(255,255,255,.04));filter:blur(8px);animation:pulse 3s infinite}
+    .img-wrap{position:relative;z-index:2;padding:8px;border-radius:28px;background:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,255,255,.2))}
+    .profile-img{width:300px;height:300px;border-radius:24px;object-fit:cover;border:5px solid rgba(255,255,255,.9);display:block}
+    .badge{display:inline-block;padding:8px 16px;border-radius:30px;background:rgba(255,255,255,.12);border:1px solid var(--border);color:var(--muted);font-size:14px;margin-bottom:16px}
+    h1{font-size:54px;line-height:1.1;margin-bottom:12px}
+    .typing{font-size:26px;color:#bfdbfe;font-weight:700;min-height:38px;margin-bottom:18px}
+    p{font-size:18px;line-height:1.9;color:#f8fafc}
+    .stats,.skills-grid,.services-grid,.projects-grid{display:grid;gap:16px}
+    .stats{grid-template-columns:repeat(4,1fr);margin:28px 0}
+    .stat,.skill-card,.service,.project,.contact-box{padding:18px;border-radius:20px;background:rgba(255,255,255,.1);border:1px solid var(--border);transition:.35s}
+    .stat:hover,.skill-card:hover,.service:hover,.project:hover,.contact-box:hover{transform:translateY(-6px)}
+    .stat h3{font-size:26px}.stat span{font-size:13px;color:var(--muted)}
+    .btns,.social{display:flex;gap:14px;flex-wrap:wrap;margin-top:24px}
+    .btn{padding:14px 24px;border-radius:14px;text-decoration:none;font-weight:700;border:none;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:10px}
+    .btn-primary{background:#fff;color:#0d6efd}.btn-primary:hover{transform:translateY(-4px) scale(1.04)}
+    .btn-outline{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--border)}
+    .btn-outline:hover{background:#fff;color:#0d6efd}
+    .social a{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.1);color:#fff;text-decoration:none;border:1px solid var(--border);transition:.3s}
+    .social a:hover{background:#fff;color:#0d6efd;transform:translateY(-5px) rotate(6deg)}
+    h2{font-size:42px;margin-bottom:14px} .section-title{text-align:center;margin-bottom:40px}
+    .about-card,.skills-card,.services-card,.projects-card,.contact-card{padding:28px}
+    .about-list{margin-top:18px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .about-item{padding:14px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid var(--border)}
+    .skills-grid{grid-template-columns:repeat(2,1fr)}
+    .bar{height:10px;border-radius:10px;background:rgba(255,255,255,.12);overflow:hidden;margin-top:10px}
+    .fill{height:100%;background:#fff;border-radius:10px}
+    .services-grid{grid-template-columns:repeat(3,1fr)}
+    .service i{font-size:34px;margin-bottom:14px;color:#bfdbfe}
+    .service h3,.project h3{margin-bottom:10px}
+    .projects-grid{grid-template-columns:repeat(3,1fr)}
+    .project-thumb{height:180px;border-radius:18px;background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.05));display:flex;align-items:center;justify-content:center;font-size:44px;margin-bottom:14px}
+    .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .contact-form{display:grid;gap:14px}
+    input,textarea{width:100%;padding:16px;border-radius:14px;border:1px solid var(--border);background:rgba(255,255,255,.08);color:#fff;outline:none}
+    input::placeholder,textarea::placeholder{color:#dbeafe}
+    footer{text-align:center;padding:24px 8%;border-top:1px solid rgba(255,255,255,.1);background:rgba(0,25,80,.25)}
+    @keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-24px)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+    @media(max-width:1000px){.hero,.grid-2,.contact-wrap{grid-template-columns:1fr}.stats,.services-grid,.projects-grid,.skills-grid,.about-list{grid-template-columns:1fr 1fr}h1{font-size:40px}h2{font-size:32px}.nav-links{display:none}}
+    @media(max-width:700px){.stats,.services-grid,.projects-grid,.skills-grid,.about-list{grid-template-columns:1fr}.profile-img{width:230px;height:230px}.ring{width:280px;height:280px}.glow{width:250px;height:250px}section{padding:70px 6%}}
+  </style>
+</head>
+<body>
+  <div class="bg-shape s1"></div><div class="bg-shape s2"></div><div class="bg-shape s3"></div>
+
+  <nav class="navbar">
+    <a href="#home" class="logo">Developer<span>information</span></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section id="home">
+    <div class="hero card hero-card">
+      <div class="left-side">
+        <div class="ring"></div><div class="glow"></div>
+        <div class="img-wrap">
+          <img class="profile-img" src="https://scontent.fktm7-1.fna.fbcdn.net/v/t39.30808-1/654479587_976501978048520_6553652674628217148_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=111&ccb=1-7&_nc_sid=1d2534&_nc_ohc=H1EVgGvPywkQ7kNvwGjlluO&_nc_oc=AdoXnubmJHTwfXlh8yF6NCNPit447UHYWTu_ZPQYYIdWDUGhfRB5_R5V57GIAD8EYys&_nc_zt=24&_nc_ht=scontent.fktm7-1.fna&_nc_gid=J3dxF9S4b2GZOJPRNPGqdg&_nc_ss=7a3a8&oh=00_Af3MXS2sIvP_IuJRuI-JBC29zF71coErzrtJp8998Le_7A&oe=69D9B94D" alt="Profile">
+        </div>
+      </div>
+      <div>
+        <div class="badge">Developer details</div>
+        <h1>Adesh Chaudhary</h1>
+        <div class="typing" id="typingText"></div>
+        <p>I am a passionate developer from Nepal who enjoys creating and managing digital content across platforms like YouTube and Facebook. I have a strong interest in video editing, social media growth, and building engaging online projects. As a developer, I am always learning new skills, improving my creativity, and working to grow my audience while delivering valuable and entertaining content. My goal is to build a strong digital presence and continue developing innovative ideas in the online world 🚀</p>
+        <div class="stats">
+          <div class="stat"><h3>2+</h3><span>Years Experience</span></div>
+          <div class="stat"><h3>50+</h3><span>Projects</span></div>
+          <div class="stat"><h3>30+</h3><span>Clients</span></div>
+          <div class="stat"><h3>100%</h3><span>Creative</span></div>
+        </div>
+        <div class="btns">
+          <button class="btn btn-primary" onclick="showMessage()"><i class="fa-solid fa-rocket"></i> Hire Me</button>
+          <a href="#projects" class="btn btn-outline"><i class="fa-solid fa-briefcase"></i> View Projects</a>
+        </div>
+        <div class="social">
+          <a href="https://www.facebook.com/adesa.caudhari.543787"><i class="fab fa-facebook-f"> </i></a>
+          <a href="https://www.instagram.com/amcmovie1/"><i class="fab fa-instagram"></i></a>
+      
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="https://www.youtube.com/@AdeshPlayHub"> <i class="fab fa-youtube"></i></a>
+          <a href="https://www.tiktok.com/@adeshplayhub"> <i class="fab fa-tiktok"></i></a>
+    
+
+
+
+
+    
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-title"><h2>About Me</h2><p>I create modern and responsive websites.</p></div>
+    <div class="grid-2 card about-card">
+      <div>
+        <h2>Professional Web Designer & Developer</h2>
+        <p>I create modern, responsive, and high-performance websites using HTML, CSS, and JavaScript, focusing on the latest UI/UX design trends. My goal is to deliver visually appealing, fast, and user-friendly digital experiences. 🚀</p>
+      </div>
+      <div class="about-list">
+        <div class="about-item">📍 Location: Nepal</div>
+        <div class="about-item">💼 Role: Web Developer</div>
+        <div class="about-item">🎨 Specialty: UI/UX Design</div>
+        <div class="about-item">🚀 Work: Freelancer</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-title"><h2>My Skills</h2><p>Progress bars with modern design.</p></div>
+    <div class="card skills-card">
+      <div class="skills-grid">
+        <div class="skill-card"><h3>HTML</h3><div class="bar"><div class="fill" style="width:95%"></div></div></div>
+        <div class="skill-card"><h3>CSS</h3><div class="bar"><div class="fill" style="width:92%"></div></div></div>
+        <div class="skill-card"><h3>JavaScript</h3><div class="bar"><div class="fill" style="width:88%"></div></div></div>
+        <div class="skill-card"><h3>Responsive Design</h3><div class="bar"><div class="fill" style="width:96%"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="section-title"><h2>My Services</h2><p>What I can do for you.</p></div>
+    <div class="card services-card">
+      <div class="services-grid">
+        <div class="service"><i class="fa-solid fa-code"></i><h3>Web Development</h3><p>Modern website development with clean and responsive code.</p></div>
+        <div class="service"><i class="fa-solid fa-palette"></i><h3>UI/UX Design</h3><p>Beautiful interface design with user-friendly layouts.</p></div>
+        <div class="service"><i class="fa-solid fa-mobile-screen"></i><h3>Responsive Design</h3><p>Mobile-friendly layouts that look great on every device.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-title"><h2>My Projects</h2><p>Sample project cards.</p></div>
+    <div class="card projects-card">
+      <div class="projects-grid">
+        <div class="project"><div class="project-thumb">🌐</div><h3>Portfolio Website</h3><p>Modern animated personal portfolio website.</p></div>
+        <div class="project"><div class="project-thumb">🛒</div><h3>E-commerce UI</h3><p>Attractive online store landing page and product layout.</p></div>
+        <div class="project"><div class="project-thumb">📱</div><h3>App Landing Page</h3><p>Responsive app showcase website with call-to-action sections.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-title"><h2>Contact Me</h2><p>Simple contact form section.</p></div>
+    <div class="card contact-card">
+      <div class="contact-wrap">
+        <div class="contact-box">
+          <h3 style="margin-bottom:12px">Get In Touch</h3>
+          <p>Feel free to contact me for website design, portfolio websites, landing pages, and frontend development projects.</p>
+          <div class="about-list" style="margin-top:18px">
+            <div class="about-item">📧 adeshmahato112@example.com</div>
+            <div class="about-item">📱 +977 9762189804</div>
+            <div class="about-item">📍 Kathmandu, Nepal</div>
+            <div class="about-item">💬 Available for Freelance</div>
+          </div>
+        </div>
+      <form action="mailto:adeshmahato112@example.com" method="post" enctype="text/plain">
+  <input type="text" name="Name" placeholder="Your Name" required></input><br> <br>
+  <input type="email" name="Email" placeholder="Your Email" required></input><br> <br>
+  <input type="text" name="Subject" placeholder="Subject" required></input><br> <br>
+  <textarea name="Message" rows="6" placeholder="Your Message" required></textarea></input><br> <br>
+  <button class="btn btn-primary" type="submit">
+    <i class="fa-solid fa-paper-plane"></i> Send Message
+  </button>
+</form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Adesh Chaudhary |  Desing bro Portfolio Website</p>
+  </footer>
+
+  <script>
+    const words=["Web Developer","Creative UI Designer","Freelancer","Portfolio Expert"];
+    let wi=0,ci=0,del=false; const t=document.getElementById('typingText');
+    function type(){
+      const w=words[wi];
+      t.textContent=!del?w.substring(0,ci+1):w.substring(0,ci-1);
+      ci=!del?ci+1:ci-1;
+      let sp=del?70:110;
+      if(!del && ci===w.length){sp=1200;del=true}
+      else if(del && ci===0){del=false;wi=(wi+1)%words.length;sp=300}
+      setTimeout(type,sp)
+    }
+    type();
+    function showMessage(){alert('Thank you for visiting my Ultra Pro Max Portfolio! 🚀')}
+    function submitForm(e){e.preventDefault();alert('Your message has been sent successfully! ✅')}
+  </script>
+</body>
+</html>

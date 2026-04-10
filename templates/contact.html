@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --primary:#1e88e5;
+      --secondary:#0d47a1;
+      --accent:#ff9800;
+      --light:#f5f7fb;
+      --dark:#121212;
+      --text:#333;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:var(--light);
+      color:var(--text);
+      line-height:1.6;
+      transition:0.4s ease;
+    }
+
+    /* ============================= */
+    /* Dark Mode */
+    /* ============================= */
+    body.dark-mode{
+      background:#0f172a;
+      color:#e5e7eb;
+    }
+    body.dark-mode .contact-container,
+    body.dark-mode .contact-info,
+    body.dark-mode .contact-form,
+    body.dark-mode .footer1,
+    body.dark-mode .footer1-bottom,
+    body.dark-mode .navbar {
+      background:#020617;
+      color:#e5e7eb;
+      border-color:#334155;
+    }
+
+    /* ============================= */
+    /* Navbar */
+    /* ============================= */
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:#fff;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 40px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .navbar h2{
+      color:var(--primary);
+    }
+
+    .navbar a{
+      margin:0 12px;
+      text-decoration:none;
+      color:#444;
+      font-weight:500;
+      position:relative;
+    }
+
+    .navbar a::after{
+      content:'';
+      position:absolute;
+      width:0;
+      height:2px;
+      background:var(--primary);
+      left:0;
+      bottom:-5px;
+      transition:0.3s;
+    }
+
+    .navbar a:hover::after{
+      width:100%;
+    }
+
+    .dark-btn{
+      background:var(--primary);
+      color:#fff;
+      border:none;
+      padding:8px 15px;
+      border-radius:20px;
+      cursor:pointer;
+    }
+
+    .dark-btn:hover{
+      opacity:0.9;
+    }
+
+    /* ============================= */
+    /* Contact Section */
+    /* ============================= */
+    .contact-section{
+      max-width:1100px;
+      margin:60px auto;
+      padding:20px;
+    }
+
+    .contact-header{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .contact-header h2{
+      font-size:36px;
+      font-weight:600;
+      margin-bottom:10px;
+    }
+
+    .contact-header p{
+      color:#666;
+      font-size:15px;
+    }
+
+    .contact-container{
+      display:grid;
+      grid-template-columns:1fr 1.2fr;
+      gap:40px;
+      background:#fff;
+      border-radius:12px;
+      padding:20px;
+      border:1px solid #eee;
+    }
+
+    .contact-info, .contact-form{
+      padding:30px;
+      border-radius:12px;
+      border:1px solid #eee;
+    }
+
+    .contact-info h3, .contact-form h3{
+      font-size:22px;
+      margin-bottom:20px;
+    }
+
+    .info-item{
+      display:flex;
+      align-items:center;
+      margin-bottom:18px;
+      font-size:15px;
+      color:#444;
+    }
+
+    .info-item span{
+      width:38px;
+      height:38px;
+      background:#f2f2f2;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      margin-right:12px;
+      font-size:16px;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    .form-group input,
+    .form-group textarea{
+      width:100%;
+      padding:12px 14px;
+      border:1px solid #ddd;
+      border-radius:8px;
+      font-size:14px;
+      outline:none;
+    }
+
+    .form-group textarea{
+      resize:none;
+      height:120px;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus{
+      border-color:var(--primary);
+    }
+
+    .contact-form button{
+      padding:12px 30px;
+      background:var(--primary);
+      color:#fff;
+      border:none;
+      border-radius:8px;
+      font-size:14px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .contact-form button:hover{
+      background:#0d47a1;
+    }
+
+    @media(max-width:900px){
+      .contact-container{
+        grid-template-columns:1fr;
+      }
+    }
+
+    /* ============================= */
+    /* Footer */
+    /* ============================= */
+    .footer1 {
+      background: #06284f;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    .footer1-container {
+      display: flex;
+      justify-content: space-between;
+      padding: 40px 80px;
+      flex-wrap: wrap;
+    }
+
+    .footer1-box {
+      width: 30%;
+    }
+
+    .footer1-box h3 {
+      margin-bottom: 10px;
+    }
+
+    .underline1 {
+      width: 50px;
+      height: 3px;
+      background: #ffcc00;
+      margin-bottom: 15px;
+    }
+
+    .school-logo1 {
+      width: 120px;
+      height: 120px;
+      border-radius: 90%;
+      object-fit: cover;
+      border: 3px solid #ffcc00;
+    }
+
+    .developer1 img {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #ffcc00;
+    }
+
+    .footer1-box p {
+      margin: 6px 0;
+      color: #ddd;
+    }
+
+    .footer1-bottom {
+      background: #041d3a;
+      padding: 15px 80px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .developer1 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .developer1 span {
+      font-size: 14px;
+      color: #fff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar fade">
+    <h2>SNRMV School</h2>
+    <div>
+      <a href="Modern.html">Home</a>
+      <a href="image2.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+      <a href="resitration-form.html">Student Register</a>
+    </div>
+    <button class="dark-btn" onclick="toggleDark()">Dark Mode</button>
+  </div>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="contact-header">
+      <h2>Contact Us</h2>
+      <p>Feel free to contact us for any queries or information</p>
+    </div>
+
+    <div class="contact-container">
+
+      <div class="contact-info">
+        <h3>Get In Touch</h3>
+        <div class="info-item">
+          <span>📍</span> Manwa, Parsa
+        </div>
+        <div class="info-item">
+          <span>📞</span> +977 9762189804
+        </div>
+        <div class="info-item">
+          <span>✉️</span> adeshmahato112@gmail.com
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <h3>Send Message</h3>
+        <form>
+          <div class="form-group">
+            <input type="text" placeholder="Your Name" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Your Email" required>
+          </div>
+          <div class="form-group">
+            <textarea placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer1">
+    <div class="footer1-container">
+      <div class="footer1-box">
+        <h3>Shree Nepal National Secondary School Baderwa, Parsa</h3>
+        <div class="underline1"></div>
+        <img src="./logo.jpg" alt="School Logo" class="school-logo1">
+      </div>
+      <div class="footer1-box">
+        <h3>School Time Schedule</h3>
+        <div class="underline1"></div>
+        <p>We work 6 days a week, please contact us for any inquiry.</p>
+        <p><strong>Sunday – Friday:</strong> 08:40 AM to 04:00 PM</p>
+        <p><strong>Saturday:</strong> Holiday</p>
+      </div>
+      <div class="footer1-box">
+        <h3>Contact Us</h3>
+        <div class="underline1"></div>
+        <p>📞 Phone: 9762189804</p>
+        <p>✉ Email: adeshmahato1123@gmail.com</p>
+        <p>📍 Location: Manwa, Parsa</p>
+      </div>
+    </div>
+
+    <div class="footer1-bottom">
+      <div class="developer1">
+        <img src="./adesh.jpg" alt="Developer Logo">
+        <span>Developed & Powered by <b>ADESH CHAUDHARY</b></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dark Mode Script -->
+  <script>
+    function toggleDark() {
+      document.body.classList.toggle("dark-mode");
+      if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("theme", "dark");
+      } else {
+        localStorage.setItem("theme", "light");
+      }
+    }
+
+    window.onload = function () {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+  </script>
+
+</body>
+</html>

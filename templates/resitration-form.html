@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Login | SNRMV</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --primary:#1e88e5;
+            --secondary:#0d47a1;
+            --accent:#ff9800;
+            --light:#f5f7fb;
+            --dark:#121212;
+            --text:#333;
+        }
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            background:linear-gradient(135deg, #2563EB, #14B8A6);
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            transition:0.4s ease;
+        }
+
+        body.dark-mode {
+            background:#0f172a;
+            color:#e5e7eb;
+        }
+
+        /* ============================= */
+        /* Navbar */
+        /* ============================= */
+        .a1{
+            margin-right:30%;
+          
+        }
+        .navbar{
+            position:sticky;
+            top:0;
+            z-index:1000;
+            background:#fff;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:12px 40px;
+            box-shadow:0 4px 15px rgba(0,0,0,0.08);
+            width:100%;
+            
+           
+        }
+
+        body.dark-mode .navbar{
+            background:#020617;
+            color:#e5e7eb;
+        }
+
+        .navbar h2{
+            color:var(--primary);
+            
+        }
+
+        .navbar a{
+            margin:0 2px;
+            text-decoration:none;
+            color:#444;
+            font-weight:500;
+            position:relative;
+            margin-right: 30px;
+          
+        }
+
+        .navbar a::after{
+            content:'';
+            position:absolute;
+            width:0;
+            height:2px;
+            background:var(--primary);
+            left:0;
+            bottom:-5px;
+            transition:0.3s;
+        }
+
+        .navbar a:hover::after{
+            width:100%;
+        }
+
+        .dark-btn{
+            background:var(--primary);
+            color:#fff;
+            border:none;
+            padding:8px 15px;
+            border-radius:20px;
+            cursor:pointer;
+        }
+
+        .dark-btn:hover{
+            opacity:0.9;
+        }
+
+        /* ============================= */
+        /* Login Card */
+        /* ============================= */
+        .login-card {
+            background: #ffffff;
+            width: 400px;
+            padding: 30px;
+            border-radius: 18px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            margin:50px 0;
+            transition:0.4s ease;
+        }
+
+        body.dark-mode .login-card {
+            background:#020617;
+            color:#e5e7eb;
+        }
+
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            border-radius: 18px 18px 0 0;
+            background: linear-gradient(90deg, #2563EB, #14B8A6);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        body.dark-mode h2{
+            color:#fff;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 25px;
+        }
+
+        body.dark-mode .subtitle{
+            color:#cbd5e1;
+        }
+
+        .row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            width: 100%;
+        }
+
+        label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #334155;
+        }
+
+        body.dark-mode label{
+            color:#e5e7eb;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 14px;
+            margin-top: 6px;
+            border-radius: 10px;
+            border: 1.5px solid #cbd5e1;
+            outline: none;
+            transition: 0.3s;
+            font-size: 14px;
+            background: white;
+        }
+
+        body.dark-mode input, body.dark-mode select{
+            background:#1f2937;
+            border-color:#334155;
+            color:#e5e7eb;
+        }
+
+        input:focus, select:focus {
+            border-color: #2563EB;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box span {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        .forgot {
+            text-align: right;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .forgot a {
+            color: #2563EB;
+            text-decoration: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(90deg, #2563EB, #14B8A6);
+            color: white;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(37,99,235,0.35);
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .register a {
+            color: #16a34a;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        @media (max-width: 420px) {
+            .login-card {
+                width: 90%;
+            }
+        }
+
+        /* ============================= */
+        /* Footer */
+        /* ============================= */
+        .footer1 {
+            background: #06284f;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            width:100%;
+        }
+
+        .footer1-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 40px 80px;
+            flex-wrap: wrap;
+        }
+
+        .footer1-box {
+            width: 30%;
+        }
+
+        .footer1-box h3 {
+            margin-bottom: 10px;
+        }
+
+        .underline1 {
+            width: 50px;
+            height: 3px;
+            background: #ffcc00;
+            margin-bottom: 15px;
+        }
+
+        .school-logo1 {
+            width: 120px;
+            height: 120px;
+            border-radius: 90%;
+            object-fit: cover;
+            border: 3px solid #ffcc00;
+        }
+
+        .developer1 img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffcc00;
+        }
+
+        .footer1-box p {
+            margin: 6px 0;
+            color: #ddd;
+        }
+
+        .footer1-bottom {
+            background: #041d3a;
+            padding: 15px 80px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .developer1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .developer1 span {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        body.dark-mode .footer1,
+        body.dark-mode .footer1-bottom {
+            background:#020617;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar fade">
+        <h2>SNRMV School</h2>
+        <div class="a1">
+            <a  href="Modern.html">Home</a>
+            <a  href="image2.html">Gallery</a>
+            <a  href="contact.html">Contact</a>
+            <a  href="resitration-form.html">Student Register</a>
+        </div>
+       
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+        <div class="top-bar"></div>
+
+        <h2>Student Login</h2>
+        <p class="subtitle">Enter your Class, Section and Roll Number</p>
+
+        <!-- Class & Section -->
+        <div class="row">
+            <div class="form-group">
+                <label>Class</label>
+                <select>
+                    <option value="">Select Class</option>
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Section</label>
+                <select>
+                    <option value="">Select Section</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Roll Number -->
+        <div class="form-group">
+            <label>Roll Number</label>
+            <input type="text" placeholder="Roll No">
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label>Password</label>
+            <div class="password-box">
+                <input type="password" id="password" placeholder="Password">
+                <span onclick="togglePassword()">👁</span>
+            </div>
+            <div class="forgot">
+                <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+
+        <button>Sign In</button>
+
+        <div class="register">
+            New Student? <a href="#">Register here</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer1">
+        <div class="footer1-container">
+            <div class="footer1-box">
+                <h3>Shree Nepal National Secondary School Baderwa, Parsa</h3>
+                <div class="underline1"></div>
+                <img src="./logo.jpg" alt="School Logo" class="school-logo1">
+            </div>
+            <div class="footer1-box">
+                <h3>School Time Schedule</h3>
+                <div class="underline1"></div>
+                <p>We work 6 days a week, please contact us for any inquiry.</p>
+                <p><strong>Sunday – Friday:</strong> 08:40 AM to 04:00 PM</p>
+                <p><strong>Saturday:</strong> Holiday</p>
+            </div>
+            <div class="footer1-box">
+                <h3>Contact Us</h3>
+                <div class="underline1"></div>
+                <p>📞 Phone: 9762189804</p>
+                <p>✉ Email: adeshmahato1123@gmail.com</p>
+                <p>📍 Location: Manwa, Parsa</p>
+            </div>
+        </div>
+
+        <div class="footer1-bottom">
+            <div class="developer1">
+                <img src="./adesh.jpg" alt="Developer Logo">
+                <span>Developed & Powered by <b>ADESH CHAUDHARY</b></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        function toggleDark() {
+            document.body.classList.toggle("dark-mode");
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+            } else {
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        window.onload = function () {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark-mode");
+            }
+        };
+
+        function togglePassword() {
+            const pwd = document.getElementById("password");
+            pwd.type = pwd.type === "password" ? "text" : "password";
+        }
+    </script>
+
+</body>
+</html>

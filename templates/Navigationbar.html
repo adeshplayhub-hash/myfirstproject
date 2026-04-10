@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodeTool Pro</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+
+/* ================= RESET ================= */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    background:#0f0f0f;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+.navbar1{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:65px;
+    background:#0f0f0f;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 25px;
+    z-index:1000;
+    transition:0.4s;
+}
+
+.navbar1.scrolled1{
+    box-shadow:0 4px 15px rgba(0,0,0,0.7);
+}
+
+.navbar1.hide1{
+    transform:translateY(-100%);
+}
+
+.logo1{
+    font-size:20px;
+    font-weight:600;
+}
+
+/* Hamburger */
+.menu-btn1{
+    width:30px;
+    height:22px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    cursor:pointer;
+}
+
+.menu-btn1 span{
+    height:3px;
+    background:white;
+    border-radius:5px;
+    transition:0.4s;
+}
+
+.menu-btn1.active1 span:nth-child(1){
+    transform:rotate(45deg) translate(5px,5px);
+}
+
+.menu-btn1.active1 span:nth-child(2){
+    opacity:0;
+}
+
+.menu-btn1.active1 span:nth-child(3){
+    transform:rotate(-45deg) translate(5px,-5px);
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar1{
+    position:fixed;
+    top:0;
+    left:-260px;
+    width:260px;
+    height:100%;
+    background:#181818;
+    padding-top:80px;
+    transition:0.4s;
+    z-index:999;
+}
+
+.sidebar1.active1{
+    left:0;
+}
+
+.sidebar1 ul{
+    list-style:none;
+}
+
+.sidebar1 li{
+    padding:15px 25px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.sidebar1 li:hover{
+    background:#272727;
+}
+
+/* Overlay */
+.overlay1{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+    z-index:500;
+}
+
+.overlay1.active1{
+    opacity:1;
+    visibility:visible;
+}
+
+/* ================= HERO ================= */
+.hero1{
+    margin-top:100px;
+    padding:80px 8%;
+}
+
+.hero1 h1{
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+.hero1 p{
+    color:#aaa;
+    max-width:600px;
+    margin-bottom:25px;
+}
+
+.hero1 button{
+    background:#ff0000;
+    border:none;
+    padding:12px 25px;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* ================= TOOLS SLIDER ================= */
+.tools1{
+    padding:60px 0;
+    text-align:center;
+}
+
+.slider1{
+    overflow:hidden;
+    margin-top:40px;
+}
+
+.slide-track1{
+    display:flex;
+    width:calc(200px * 14);
+    animation:scroll1 25s linear infinite;
+}
+
+.slide1{
+    width:200px;
+    display:flex;
+    justify-content:center;
+}
+
+.icon-card1{
+    width:110px;
+    height:110px;
+    background:#1f1f1f;
+    border-radius:15px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:0.3s;
+}
+
+.icon-card1:hover{
+    transform:translateY(-10px) scale(1.1);
+}
+
+.icon-card1 img{
+    width:60px;
+}
+
+@keyframes scroll1{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(calc(-200px * 7));}
+}
+
+/* ================= FOOTER ================= */
+footer.footer1{
+    background:#181818;
+    padding:30px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:100px;
+    opacity:0;
+    transform:translateY(60px);
+    transition:0.8s;
+}
+
+footer.footer1.show1{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.social1 a{
+    color:white;
+    margin-left:15px;
+    transition:0.3s;
+}
+
+.social1 a:hover{
+    color:red;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar1">
+    <div class="menu-btn1" id="menuBtn1">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="logo1">CodeTool Pro</div>
+    <i class="fas fa-user-circle" style="font-size:22px;"></i>
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar1" id="sidebar1">
+    <ul>
+        <li><i class="fas fa-home"></i> Home</li>
+        <li><i class="fas fa-chart-line"></i> Analytics</li>
+        <li><i class="fas fa-layer-group"></i> Projects</li>
+        <li><i class="fas fa-cog"></i> Settings</li>
+    </ul>
+</div>
+
+<div class="overlay1" id="overlay1"></div>
+
+<!-- HERO -->
+<section class="hero1">
+    <h1>CodeTool &lt; / &gt;</h1>
+    <p>Build modern websites faster with premium UI templates.</p>
+    <button>Explore Now</button>
+</section>
+
+<!-- TOOLS -->
+<section class="tools1">
+    <h2>Our Tools</h2>
+
+    <div class="slider1">
+        <div class="slide-track1">
+            <div class="slide1"><div class="icon-card1"><img src="https://cdn-icons-png.flaticon.com/512/732/732212.png"></div></div>
+            <div class="slide1"><div class="icon-card1"><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png"></div></div>
+            <div class="slide1"><div class="icon-card1"><img src="https://cdn-icons-png.flaticon.com/512/5968/5968292.png"></div></div>
+            <div class="slide1"><div class="icon-card1"><img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Tailwind_CSS_Logo.svg"></div></div>
+            <div class="slide1"><div class="icon-card1"><img src="https://cdn-icons-png.flaticon.com/512/919/919851.png"></div></div>
+            <div class="slide1"><div class="icon-card1"><img src="https://cdn-icons-png.flaticon.com/512/732/732212.png"></div></div>
+            <div class="slide1"><div class="icon-card1"><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png"></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer1" id="footer1">
+    <div>© 2025 CodeTool</div>
+    <div class="social1">
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+</footer>
+
+<script>
+
+const menuBtn = document.getElementById("menuBtn1");
+const sidebar = document.getElementById("sidebar1");
+const overlay = document.getElementById("overlay1");
+const navbar = document.querySelector(".navbar1");
+const footer = document.getElementById("footer1");
+
+let lastScroll = 0;
+
+menuBtn.onclick = () => {
+    menuBtn.classList.toggle("active1");
+    sidebar.classList.toggle("active1");
+    overlay.classList.toggle("active1");
+};
+
+overlay.onclick = () => {
+    menuBtn.classList.remove("active1");
+    sidebar.classList.remove("active1");
+    overlay.classList.remove("active1");
+};
+
+window.addEventListener("scroll", () => {
+
+    let currentScroll = window.pageYOffset;
+
+    if(currentScroll > 20){
+        navbar.classList.add("scrolled1");
+    } else {
+        navbar.classList.remove("scrolled1");
+    }
+
+    if(currentScroll > lastScroll && currentScroll > 100){
+        navbar.classList.add("hide1");
+    } else {
+        navbar.classList.remove("hide1");
+    }
+
+    lastScroll = currentScroll;
+
+    let footerTop = footer.getBoundingClientRect().top;
+    if(footerTop < window.innerHeight - 50){
+        footer.classList.add("show1");
+    }
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kodeset Style Component - Fixed Tabs</title>
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0f0f0f;
+  color: #fff;
+}
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+/* LEFT PREVIEW */
+.preview {
+  width: 50%;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+/* RIGHT CODE PANEL */
+.code-wrapper {
+  position: relative;
+  width: 50%;
+  max-width: 700px;
+  background: #111827;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  height: 100%; /* Full height of wrapper */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.tab-btn {
+  background: #1f2937;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tab-btn.active {
+  background: #00ffcc;
+  color: #000;
+}
+
+/* Copy button */
+.copy-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #00ffcc;
+  color: #000;
+  border: none;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.copy-btn:hover { background:#00ccaa; }
+
+/* Code pre */
+pre {
+  color: #00ffcc;
+  font-size: 14px;
+  margin: 0;
+  position: absolute;
+  top: 50px; /* below tabs */
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: none;
+  overflow: auto;
+}
+pre.active { display: block; }
+
+
+
+
+
+
+
+
+
+
+
+/*=======================================================================================================*/
+   /*=============================Button=============================================================*/
+/*=======================================================================================================*/
+
+
+
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- LEFT PREVIEW -->
+  <div class="preview">
+    <!-- Live preview content goes here -->
+    <p style="color:#00ffcc;">
+
+
+
+
+ <button class="a1">
+  <span>PLAY NOW</span>
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </p>
+  </div>
+
+  <!-- RIGHT CODE PANEL -->
+  <div class="code-wrapper">
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showCode('html')">HTML</button>
+      <button class="tab-btn" onclick="showCode('css')">CSS</button>
+      <button class="tab-btn" onclick="showCode('js')">JS</button>
+    </div>
+
+    <!-- Copy Button -->
+    <button class="copy-btn" onclick="copyCode()">Copy</button>
+
+    <!-- Code Panels -->
+   <pre id="html" class="active">
+ 
+
+</pre>
+
+    <pre id="css">
+
+
+
+
+    </pre>
+
+   <pre id="js">
+
+    
+    </pre>
+
+  </div>
+</div>
+
+<script>
+function showCode(type){
+  document.querySelectorAll('pre').forEach(p => p.classList.remove('active'));
+  document.getElementById(type).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function copyCode(){
+  const activeCode = document.querySelector('pre.active').innerText;
+  navigator.clipboard.writeText(activeCode);
+  const btn = document.querySelector(".copy-btn");
+  btn.innerText = "Copied!";
+  setTimeout(()=>{ btn.innerText = "Copy"; },2000);
+}
+</script>
+
+</body>
+</html>

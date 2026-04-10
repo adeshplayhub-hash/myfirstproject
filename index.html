@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CodePulse - Modern Web Templates</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+/* ================= RESET =================I create modern, responsive, and high-performance websites using HTML, CSS, and JavaScript, focusing on the latest UI/UX design trends. My goal is to deliver visually appealing, fast, and user-friendly digital experiences. 🚀 */
+* {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', sans-serif;}
+body {background: linear-gradient(135deg, #1e3c72, #2a5298); min-height:100vh; color:white; overflow-x:hidden;}
+
+
+.main-content{
+    margin-top:30%;
+}
+
+
+
+/* ================= NAVBAR ================= */
+.navbar {
+    position: fixed;
+    top:0;
+    width:100%;
+    height:70px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 25px;
+    color:white;
+    z-index:100;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+.navbar.scrolled {
+    box-shadow:0 5px 20px rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.8);
+}
+.navbar.hide {transform: translateY(-100%);}
+.logo {font-size:22px; font-weight:700; letter-spacing:1px;}
+.menu-btn {width:35px; height:25px; display:flex; flex-direction:column; justify-content:space-between; cursor:pointer;}
+.menu-btn span {
+    height:4px; width:100%; background:white; border-radius:5px; transition:0.4s;
+}
+.menu-btn.active span:nth-child(1){transform:rotate(45deg) translate(6px,6px);}
+.menu-btn.active span:nth-child(2){opacity:0;}
+.menu-btn.active span:nth-child(3){transform:rotate(-45deg) translate(6px,-6px);}
+
+/* ================= SIDEBAR ================= */
+
+    
+
+.sidebar {
+    position:fixed;
+    top:0; left:-320px;
+    width:320px; height:100%;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding-top:90px;
+    box-shadow:5px 0 20px rgba(0,0,0,0.3);
+    transition:0.4s ease;
+    z-index:999;
+    margin-top:4.7%;
+}
+.sidebar.active {left:0;}
+.sidebar ul {list-style:none;}
+.sidebar li {
+    padding:28px 37px;
+    font-size:17px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    cursor:pointer;
+    transition: all 0.4s ease;
+    opacity:0;
+    transform: translateX(-20px);
+}
+.sidebar.active li {opacity:1; transform:translateX(0);}
+.sidebar li:hover {background:rgba(255,255,255,0.2); padding-left:40px;}
+
+/* IMPORTANT: link style same as before */
+.sidebar li a{
+    text-decoration:none;
+    color:white;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    width:100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= OVERLAY ================= */
+.overlay {
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:rgba(0,0,0,0.5);
+    opacity:0;
+    visibility:hidden;
+    transition:0.3s;
+}
+.overlay.active {opacity:1; visibility:visible;}
+
+/* ================= MAIN CONTENT ================= */
+main {margin-top:100px; padding:40px;}
+.hero {padding:100px 8%; text-align:left;}
+.hero h1 {font-size:3.5rem; margin-bottom:20px;}
+.hero p {color:#ddd; max-width:600px; margin-bottom:30px;}
+.view-btn {background: transparent; border: 1px solid #fff; text-decoration: none; color: white; padding: 10px 25px; cursor: pointer; border-radius: 5px; transition:0.3s;}
+.view-btn:hover {background:white; color:#1e3c72; }
+
+/* ================= FEATURES ================= */
+.about-us {
+    text-align:center;
+    padding:50px 8%;
+    opacity:0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+.about-us.show {opacity:1; transform:translateY(0);}
+
+.features-grid{display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px; margin-top:50px;}
+.feature-card{background: rgba(255,255,255,0.05); padding:30px; border-radius:10px; text-align:left; border:1px solid rgba(255,255,255,0.1);}
+.feature-card i{font-size:2rem; color:#3498db; margin-bottom:15px;}
+
+
+
+
+
+
+
+/* ================= UPDATED SLIDER ================= */
+
+.slider {
+    height: 250px;
+   width: 100%;
+    overflow-x: hidden; /* horizontal scroll */
+    overflow-y: hidden; /* vertical scroll prevent */
+    display: flex;
+    align-items: center;
+    position: relative;
+     
+}
+
+
+/* Gradient same as website */
+.slider::before,
+.slider::after{
+    content:"";
+    position:absolute;
+    width:15%;
+    height:100%;
+    z-index:2;
+    background:linear-gradient(to right, #2a5298, transparent);
+}
+
+.slider::after{
+    right:0;
+    transform:rotate(180deg);
+}
+
+.slider::before{
+    left:0;
+}
+
+.slide-track {
+    display: flex;
+    flex-direction: row; /* <-- ensure ye row hai, default flex is row but explicitly likho */
+    width: max-content;
+}
+
+.slide-track.left{
+    animation:scroll-left 100s linear infinite;
+}
+.slide-track.right{
+    animation:scroll-right 100s linear infinite;
+}
+
+.slide-track:hover{
+    animation-play-state:paused;
+}
+
+.slide{
+    width:200px;
+    display:flex;
+    justify-content:center;
+    margin:10px;
+}
+
+.icon-card{
+    width:170px;
+    height:170px;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    backdrop-filter:blur(20px);
+    transition:0.3s;
+    
+   
+}
+
+.icon-card:hover{
+    transform:translateY(-10px) scale(1.1);
+    box-shadow:0 15px 30px rgba(0,0,0,0.6);
+}
+
+/* Make slider images circular */
+.icon-card img {
+    width: 80%;        /* or whatever size you want */
+    height: 80%;       /* make it equal to width */
+    border-radius: 15%; /* makes it circular */
+    object-fit: cover;  /* ensures the image fills the circle without distortion */
+}
+
+/* Animations */
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+
+@keyframes scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================= FOOTER ================= */
+.footer1-bottom{background:#041d3a; padding:15px 60px; margin-top: 16%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;}
+.social-navbar{display:flex; gap:15px;}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-6px) scale(1.1); }
+}
+.social-navbar a {
+    width:42px; height:42px; display:flex; align-items:center; justify-content:center; color:white; border-radius:50%; text-decoration:none; font-size:18px; transition: transform 0.3s;
+    animation: bounce 2.5s ease-in-out infinite;
+}
+.social-navbar a:hover {transform: scale(1.3) translateY(-4px);}
+.youtube{background:#FF0000;} .tiktok{background:#000;} .instagram{background:#E1306C;} .whatsapp{background:#25D366;}
+.developer1{display:flex; align-items:center; gap:10px; color:white;}
+.developer1 img{width:45px; height:45px; border-radius:50%; object-fit:cover; border:2px solid #ffcc00;}
+.developer1 span{font-size:14px;}
+
+
+/****==============================================================================****/
+  /**==================================MAIN-CONTACT================================**/
+/****==============================================================================****/
+.TOOLS{
+    font-size: 57PX;
+    margin-left: 10%;
+    margin-top: 10%;
+ 
+
+}
+
+.subtitle{
+    margin-left: 10%;
+    margin-top: 1%;
+
+    margin-bottom: 3%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <div class="menu-btn" id="menuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="logo">AdeshPlayHUb</div>
+    <i class="fas fa-user-circle" style="font-size:24px;"></i>
+</div>
+
+<!-- Sidebar -->
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <ul>
+        <li>
+            <a href="dashboard.html">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+        </li>
+        <li>
+            <a href="analytics.html">
+                <i class="fas fa-chart-line"></i> Analytics
+            </a>
+        </li>
+        <li>
+            <a href="components/component-list.html">
+                <i class="fas fa-layer-group"></i> Projects
+            </a>
+        </li>
+        <li>
+            <a href="settings.html">
+                <i class="fas fa-cog"></i> Settings
+            </a>
+        </li>
+        <li>
+  <a href="portfolio.html">
+    <i class="fas fa-code"></i> Developer info
+</a>
+        </li>
+    </ul>
+</div>
+
+
+
+
+<!-- Overlay -->
+<div class="overlay" id="overlay"></div>
+
+<!-- Main Content -->
+<main>
+    <section class="hero">
+        <h1>Welcome to AdeshPlayHUb</h1>
+        <p>Explore a modern collection of high-quality web templates designed for developers and businesses to quickly launch amazing websites.</p>
+    
+        <a href="components/main-showcase.html"   class="view-btn">   Using a Templets</a>
+       
+    </section>
+
+    <section class="about-us">
+        <h2>About CodePulse</h2>
+        <p class="subtitle">Your ultimate platform for ready-to-use code templates, crafted with clean and responsive design.</p>
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt"></i>
+                <h3>Responsive Templates</h3>
+                <p>Optimized for all devices, from desktop to mobile, ensuring smooth performance everywhere.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>High-Quality Code</h3>
+                <p>Each template follows best practices for clean, readable, and customizable code.</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ================= OUR TOOLS SECTION ================= -->
+
+<div class="main-content">
+    <h2 class="TOOLS">Software Developer Students</h2>
+    <p class="subtitle">Technologies we use to build high-quality templates,software and website</p>
+</div>
+
+<!-- Slider 1 (Left → Right) -->
+<div class="slider">
+    <div class="slide-track right">
+
+        <!-- Icons -->
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll1.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll2.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll3.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll4.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll5.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll6.png"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll7.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll8.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll9.png"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll10.jpg"></div></div>
+          <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll11.jpg"></div></div>
+
+
+        <!-- Duplicate for smooth infinite -->
+                 <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll1.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll2.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll3.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll4.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll5.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll6.png"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll7.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll8.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll9.png"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll10.jpg"></div></div>
+          <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll11.jpg"></div></div>
+
+                            <!-- Duplicate for smooth infinite -->
+
+                            <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll1.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll2.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll3.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll4.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll5.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll6.png"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll7.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll8.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll9.png"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll10.jpg"></div></div>
+          <div class="slide"><div class="icon-card"><img src="assets/images/students/girls/Roll11.jpg"></div></div>
+
+
+
+
+
+    </div>
+</div>
+
+<!-- Slider 2 (Right → Left) -->
+<div class="slider">
+    <div class="slide-track left">
+
+        <!-- Icons -->
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool1.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Roll2.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool3.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool4.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool5.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool6.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool7.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool8.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool9.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool10.jpg"></div></div>
+
+        <!-----Dublicate -->
+         <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool1.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Roll2.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool3.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool4.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool5.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool6.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool7.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool8.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool9.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool10.jpg"></div></div>
+
+         <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool1.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Roll2.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool3.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool4.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool5.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool6.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool7.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool8.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool9.jpg"></div></div>
+        <div class="slide"><div class="icon-card"><img src="assets/images/students/boys/Rool10.jpg"></div></div>
+
+    </div>
+</div>
+
+<!-- Footer -->
+<div class="footer1-bottom">
+  <div class="social-navbar">
+    <a href="https://youtube.com/" target="_blank" class="youtube"><i class="fab fa-youtube"></i></a>
+    <a href="https://tiktok.com/" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
+    <a href="https://instagram.com/" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://wa.me/9779762189804?text=Hello%20I%20visited%20CodePulse" target="_blank" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <div class="developer1">
+    <img src="https://scontent.fktm7-1.fna.fbcdn.net/v/t39.30808-1/624953350_122274695888211445_4386338995804624418_n.jpg?stp=c0.485.1155.1155a_cp0_dst-jpg_s40x40_tt6&_nc_cat=100&ccb=1-7&_nc_sid=1d2534&_nc_ohc=ctRH_aDd0fIQ7kNvwHpxGJV&_nc_oc=AdlSINiGGFyzlvkRhI2eesoctePDeET2IwYsdL4-WFxa8S2nQMCo3rIaG-UMpnHDQP8&_nc_zt=24&_nc_ht=scontent.fktm7-1.fna&_nc_gid=iuRrXmNWhE_WMPH9UGoQgA&_nc_ss=8&oh=00_AfxCMv0Z6B66-5Ms53pqBWPzxsQDFo4oLj-9ROztWAT55g&oe=69AC65C5" alt="Developer Logo">
+    <span>Developed & Powered by <b>ADESH CHAUDHARY</b></span>
+  </div>
+</div>
+
+<script>
+/* ================= SIDEBAR TOGGLE ================= */
+const menuBtn = document.getElementById("menuBtn");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const sidebarItems = document.querySelectorAll(".sidebar li");
+
+menuBtn.addEventListener("click", ()=>{
+    menuBtn.classList.toggle("active");
+    sidebar.classList.toggle("active");
+    overlay.classList.toggle("active");
+    sidebarItems.forEach((item, index)=>{
+        item.style.transitionDelay = sidebar.classList.contains("active") ? `${index*0.05}s` : "0s";
+    });
+});
+overlay.addEventListener("click", ()=>{
+    menuBtn.classList.remove("active");
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+});
+
+/* ================= FACEBOOK-LIKE NAVBAR SCROLL ================= */
+let lastScrollTop = 0;
+const navbar = document.querySelector(".navbar");
+
+window.addEventListener("scroll", () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if(scrollTop > lastScrollTop && scrollTop > 100){navbar.classList.add("hide");}
+    else{navbar.classList.remove("hide");}
+    lastScrollTop = scrollTop;
+});
+
+/* ================= ABOUT SECTION ANIMATION ================= */
+const aboutSection = document.querySelector(".about-us");
+
+function revealAbout() {
+    const sectionTop = aboutSection.getBoundingClientRect().top;
+    const triggerPoint = window.innerHeight - 150;
+    if(sectionTop < triggerPoint){
+        aboutSection.classList.add("show");
+        window.removeEventListener("scroll", revealAbout);
+    }
+}
+window.addEventListener("scroll", revealAbout);
+window.addEventListener("load", revealAbout);
+</script>
+
+</body>
+</html>

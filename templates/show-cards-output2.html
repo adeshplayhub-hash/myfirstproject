@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kodeset Style Component - Fixed Tabs</title>
+<link rel="stylesheet" href="../assets/css/cards2.css">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0f0f0f;
+  color: #fff;
+}
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+/* LEFT PREVIEW */
+.preview {
+  width: 50%;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+/* RIGHT CODE PANEL */
+.code-wrapper {
+  position: relative;
+  width: 50%;
+  max-width: 700px;
+  background: #111827;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  height: 100%; /* Full height of wrapper */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.tab-btn {
+  background: #1f2937;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tab-btn.active {
+  background: #00ffcc;
+  color: #000;
+}
+
+/* Copy button */
+.copy-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #00ffcc;
+  color: #000;
+  border: none;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.copy-btn:hover { background:#00ccaa; }
+
+/* Code pre */
+pre {
+  color: #00ffcc;
+  font-size: 14px;
+  margin: 0;
+  position: absolute;
+  top: 50px; /* below tabs */
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: none;
+  overflow: auto;
+}
+pre.active { display: block; }
+
+
+
+
+
+
+
+
+
+
+
+/*=======================================================================================================*/
+   /*=============================Button=============================================================*/
+/*=======================================================================================================*/
+/* BUTTON */
+.btn2 {
+    position: relative;
+    padding: 16px 50px;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 60px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    transition: 0.3s;
+    margin: 150px auto;
+    display:block;
+}
+
+/* Neon Border */
+.btn2::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:60px;
+    padding:2px;
+    background: linear-gradient(270deg,#00f5ff,#ff00ff,#00f5ff);
+    background-size:400%;
+    animation: neonMove 6s linear infinite;
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+}
+
+@keyframes neonMove {
+    0%{background-position:0%}
+    100%{background-position:400%}
+}
+
+/* Hover */
+.btn2:hover {
+    transform: scale(1.08);
+}
+
+/* Ripple */
+.ripple2 {
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.4);
+    transform:scale(0);
+    animation:ripple2 0.6s linear;
+}
+
+@keyframes ripple2 {
+    to {
+        transform:scale(4);
+        opacity:0;
+    }
+}
+
+/* Spinner */
+.spinner2 {
+    width:22px;
+    height:22px;
+    border:3px solid rgba(255,255,255,0.3);
+    border-top:3px solid white;
+    border-radius:50%;
+    animation:spin2 1s linear infinite;
+    display:inline-block;
+}
+
+@keyframes spin2 {
+    100%{transform:rotate(360deg);}
+}
+
+/* Success */
+.success2 {
+    background: linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.tick2 {
+    font-size:20px;
+}
+
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- LEFT PREVIEW -->
+  <div class="preview">
+    <!-- Live preview content goes here -->
+    <p style="color:#00ffcc;">
+
+
+
+
+<button class="btn2" id="btn2">
+    <span id="text2">Submit</span>
+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </p>
+  </div>
+
+  <!-- RIGHT CODE PANEL -->
+<div class="code-wrapper">
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showCode('html')">HTML</button>
+      <button class="tab-btn" onclick="showCode('css')">CSS</button>
+      <button class="tab-btn" onclick="showCode('js')">JS</button>
+    </div>
+
+    <!-- Copy Button -->
+    <button class="copy-btn" onclick="copyCode()">Copy</button>
+
+    <!-- Code Panels -->
+   <pre id="html" class="active">
+ 
+&lt;button class="btn2" id="btn2"&gt;
+    &lt;span id="text2">Submit&lt;/span&gt;
+&lt;/button&gt;
+</pre>
+
+    <pre id="css">
+
+
+.btn2 {
+    position: relative;
+    padding: 16px 50px;
+    font-size: 18px;
+    color: #fff;
+    border-radius: 60px;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    overflow: hidden;
+    transition: 0.3s;
+    margin: 150px auto;
+    display:block;
+}
+
+/* Neon Border */
+.btn2::before {
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:60px;
+    padding:2px;
+    background: linear-gradient(270deg,#00f5ff,#ff00ff,#00f5ff);
+    background-size:400%;
+    animation: neonMove 6s linear infinite;
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+}
+
+@keyframes neonMove {
+    0%{background-position:0%}
+    100%{background-position:400%}
+}
+
+/* Hover */
+.btn2:hover {
+    transform: scale(1.08);
+}
+
+/* Ripple */
+.ripple2 {
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,0.4);
+    transform:scale(0);
+    animation:ripple2 0.6s linear;
+}
+
+@keyframes ripple2 {
+    to {
+        transform:scale(4);
+        opacity:0;
+    }
+}
+
+/* Spinner */
+.spinner2 {
+    width:22px;
+    height:22px;
+    border:3px solid rgba(255,255,255,0.3);
+    border-top:3px solid white;
+    border-radius:50%;
+    animation:spin2 1s linear infinite;
+    display:inline-block;
+}
+
+@keyframes spin2 {
+    100%{transform:rotate(360deg);}
+}
+
+/* Success */
+.success2 {
+    background: linear-gradient(135deg,#22c55e,#16a34a);
+}
+
+.tick2 {
+    font-size:20px;
+}
+
+
+    </pre>
+
+   <pre id="js">
+
+    document.addEventListener("DOMContentLoaded", function(){
+
+const btn = document.getElementById("btn2");
+const text = document.getElementById("text2");
+
+btn.addEventListener("click", function(e){
+
+    /* 🔊 SOUND (no file needed) */
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioCtx.createOscillator();
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+    oscillator.connect(audioCtx.destination);
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.1);
+
+    /* Ripple */
+    const circle = document.createElement("span");
+    circle.classList.add("ripple2");
+
+    const rect = btn.getBoundingClientRect();
+    circle.style.left = (e.clientX - rect.left) + "px";
+    circle.style.top = (e.clientY - rect.top) + "px";
+
+    btn.appendChild(circle);
+    setTimeout(()=>circle.remove(),600);
+
+    /* Loading */
+    text.innerHTML = '<span class="spinner2"></span>';
+
+    setTimeout(()=>{
+        btn.classList.add("success2");
+        text.innerHTML = '<span class="tick2">✔ Done</span>';
+    },2000);
+
+    setTimeout(()=>{
+        btn.classList.remove("success2");
+        text.innerHTML = 'Submit';
+    },4000);
+
+});
+
+});
+    </pre>
+
+  </div>
+</div>
+
+<script>
+function showCode(type){
+  document.querySelectorAll('pre').forEach(p => p.classList.remove('active'));
+  document.getElementById(type).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function copyCode(){
+  const activeCode = document.querySelector('pre.active').innerText;
+  navigator.clipboard.writeText(activeCode);
+  const btn = document.querySelector(".copy-btn");
+  btn.innerText = "Copied!";
+  setTimeout(()=>{ btn.innerText = "Copy"; },2000);
+}
+</script>
+
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+const btn = document.getElementById("btn2");
+const text = document.getElementById("text2");
+
+btn.addEventListener("click", function(e){
+
+    /* 🔊 SOUND (no file needed) */
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioCtx.createOscillator();
+    oscillator.type = "square";
+    oscillator.frequency.setValueAtTime(600, audioCtx.currentTime);
+    oscillator.connect(audioCtx.destination);
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.1);
+
+    /* Ripple */
+    const circle = document.createElement("span");
+    circle.classList.add("ripple2");
+
+    const rect = btn.getBoundingClientRect();
+    circle.style.left = (e.clientX - rect.left) + "px";
+    circle.style.top = (e.clientY - rect.top) + "px";
+
+    btn.appendChild(circle);
+    setTimeout(()=>circle.remove(),600);
+
+    /* Loading */
+    text.innerHTML = '<span class="spinner2"></span>';
+
+    setTimeout(()=>{
+        btn.classList.add("success2");
+        text.innerHTML = '<span class="tick2">✔ Done</span>';
+    },2000);
+
+    setTimeout(()=>{
+        btn.classList.remove("success2");
+        text.innerHTML = 'Submit';
+    },4000);
+
+});
+
+});
+</script>
+
+</body>
+</html>
