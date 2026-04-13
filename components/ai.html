@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background:radial-gradient(circle at top,#0f2027,#000);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:sans-serif;
+}
+
+.box{
+  width:420px;
+  height:650px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  box-shadow:0 0 40px cyan;
+  display:flex;
+  flex-direction:column;
+}
+
+.header{
+  padding:15px;
+  background:linear-gradient(135deg,#00c6ff,#0072ff);
+  color:white;
+  text-align:center;
+  font-weight:bold;
+}
+
+.chat{
+  flex:1;
+  padding:10px;
+  overflow-y:auto;
+  color:white;
+}
+
+.input-area{
+  display:flex;
+  padding:10px;
+  background:rgba(0,0,0,0.3);
+}
+
+input{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:20px;
+  outline:none;
+}
+
+button{
+  margin-left:5px;
+  padding:10px 12px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  background:cyan;
+  font-weight:bold;
+}
+
+.msg{
+  margin:5px;
+  padding:8px 12px;
+  border-radius:15px;
+}
+
+.user{background:#0072ff;align-self:flex-end;}
+.bot{background:#00c6ff;align-self:flex-start;}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <div class="header">🤖 REAL AI CHAT (Nepali + English)</div>
+
+  <div class="chat" id="chat"></div>
+
+  <div class="input-area">
+    <input id="input" placeholder="Ask anything..." />
+    <button onclick="send()">Send</button>
+    <button onclick="voice()">🎤</button>
+  </div>
+
+</div>
+
+<script>
+
+let memory = { name:"" };
+
+// 🗣️ Speak
+function speak(text){
+  let msg = new SpeechSynthesisUtterance(text);
+  msg.lang = "en-US";
+  msg.rate = 1;
+  speechSynthesis.speak(msg);
+}
+
+// 💬 Send message
+function send(){
+  let input=document.getElementById("input");
+  let text=input.value.trim();
+  if(text==="")return;
+
+  document.getElementById("chat").innerHTML+=
+  `<div class='msg user'>${text}</div>`;
+
+  reply(text.toLowerCase());
+  input.value="";
+}
+
+// 🤖 AI LOGIC (CHATGPT STYLE)
+function reply(t){
+
+  let reply="";
+
+  // 👨‍💻 Developer
+  if(t.includes("who made you")||t.includes("creator")||t.includes("developed")){
+    reply="🤖 मलाई Adesh Chaudhary ले develop गर्नुभएको हो।";
+  }
+
+  // 🧠 Memory
+  else if(t.includes("my name is")){
+    memory.name = t.split("is")[1].trim();
+    reply="Nice to meet you "+memory.name+" 😊";
+  }
+  else if(t.includes("what is my name")){
+    reply = memory.name ? "Your name is "+memory.name : "I don't know yet 🤔";
+  }
+
+  // 🇳🇵 Nepali
+  else if(t.includes("namaste")) reply="नमस्ते 👋";
+  else if(t.includes("k xa")) reply="ठीक छु 😎 तपाईं कस्तो हुनुहुन्छ?";
+
+  // 🇬🇧 English
+  else if(t.includes("hello")) reply="Hello 👋 How can I help you?";
+  else if(t.includes("how are you")) reply="I am fine 😊";
+
+  // 📜 General AI style
+  else if(t.includes("what is ai")) reply="AI भनेको Artificial Intelligence हो 🤖";
+  else if(t.includes("what is javascript")) reply="JavaScript website बनाउने language हो 🌐";
+
+  // ❓ Smart fallback (ChatGPT feel)
+  else reply="🤖 मैले बुझें: '"+t+"' तर म अझै सिक्दैछु... कृपया फेरि सोध्नुहोस्";
+
+  setTimeout(()=>{
+
+    document.getElementById("chat").innerHTML+=
+    `<div class='msg bot'>${reply}</div>`;
+
+    speak(reply);
+
+  },400);
+}
+
+// 🎤 Voice input
+function voice(){
+
+  let rec = new (window.SpeechRecognition||window.webkitSpeechRecognition)();
+  rec.lang="en-US";
+  rec.start();
+
+  rec.onresult=function(e){
+    let text=e.results[0][0].transcript;
+    document.getElementById("input").value=text;
+    send();
+  };
+}
+
+</script>
+
+</body>
+</html>
