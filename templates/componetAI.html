@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kodeset Style Component - Fixed Tabs</title>
+<link rel="stylesheet" href="../assets/css/cards2.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<head>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #0f0f0f;
+  color: #fff;
+}
+
+.wrapper {
+  display: flex;
+  height: 100vh;
+}
+
+/* LEFT PREVIEW */
+.preview {
+  width: 50%;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+
+/* RIGHT CODE PANEL */
+.code-wrapper {
+  position: relative;
+  width: 50%;
+  max-width: 700px;
+  background: #111827;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  height: 100%; /* Full height of wrapper */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.tab-btn {
+  background: #1f2937;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.tab-btn.active {
+  background: #00ffcc;
+  color: #000;
+}
+
+/* Copy button */
+.copy-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #00ffcc;
+  color: #000;
+  border: none;
+  padding: 6px 12px;
+  font-size: 13px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.copy-btn:hover { background:#00ccaa; }
+
+/* Code pre */
+pre {
+  color: #00ffcc;
+  font-size: 14px;
+  margin: 0;
+  position: absolute;
+  top: 50px; /* below tabs */
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  display: none;
+  overflow: auto;
+}
+pre.active { display: block; }
+
+
+
+
+
+
+
+
+
+
+
+/*=======================================================================================================*/
+   /*=============================Button=============================================================*/
+/*=======================================================================================================*/
+/* BUTTON */
+
+
+.box{
+  width:420px;
+  height:650px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  box-shadow:0 0 40px cyan;
+  display:flex;
+  flex-direction:column;
+}
+
+.header{
+  padding:15px;
+  background:linear-gradient(135deg,#00c6ff,#0072ff);
+  color:white;
+  text-align:center;
+  font-weight:bold;
+}
+
+.chat{
+  flex:1;
+  padding:10px;
+  overflow-y:auto;
+  color:white;
+}
+
+.input-area{
+  display:flex;
+  padding:10px;
+  background:rgba(0,0,0,0.3);
+}
+
+input{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:20px;
+  outline:none;
+}
+
+button{
+  margin-left:5px;
+  padding:10px 12px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  background:cyan;
+  font-weight:bold;
+}
+
+.msg{
+  margin:5px;
+  padding:8px 12px;
+  border-radius:15px;
+}
+
+.user{background:#0072ff;align-self:flex-end;}
+.bot{background:#00c6ff;align-self:flex-start;}
+
+.btn1{
+  padding:8px 14px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.3);
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  text-decoration:none;
+  transition:0.3s;
+  margin-right: 70%;
+ 
+}
+.btn1:hover{
+  background-color: #0072ff;
+  color: white;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+.fa-youtube {
+  font-size: 40px;       /* icon size */
+  color: #FF0000;        /* YouTube red color */
+  transition: 0.3s;
+  margin: 5%;
+}
+
+.fa-youtube:hover {
+  color: #cc0000;        /* hover color */
+  transform: scale(1.2); /* zoom effect */
+}
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- LEFT PREVIEW -->
+  <div class="preview">
+    <!-- Live preview content goes here -->
+    <p style="color:#00ffcc;">
+
+
+
+
+
+
+
+        
+<div class="box">
+
+  <div class="header">🤖 REAL AI CHAT (Nepali + English)</div>
+
+  <div class="chat" id="chat"></div>
+
+  <div class="input-area">
+    <input id="input" placeholder="Ask anything..." />
+    <button onclick="send()">Send</button>
+    <button onclick="voice()">🎤</button>
+  </div>
+   
+        <a href="https://www.youtube.com/watch?v=71OqhON5oek"> <i class="fab fa-youtube"></i></a>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </p>
+  </div>
+
+  <!-- RIGHT CODE PANEL -->
+<div class="code-wrapper">
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showCode('html')">HTML</button>
+      <button class="tab-btn" onclick="showCode('css')">CSS</button>
+      <button class="tab-btn" onclick="showCode('js')">JS</button>
+    </div>
+
+    <!-- Copy Button -->
+    <button class="copy-btn" onclick="copyCode()">Copy</button>
+
+    <!-- Code Panels -->
+   <pre id="html" class="active">
+&lt;div class="box"&gt;
+
+  &lt;div class="header">🤖 REAL AI CHAT (Nepali + English)&lt;/div&gt;
+
+  &lt;div class="chat" id="chat">&lt;/div&gt;
+
+  &lt;div class="input-area"&gt;
+    &lt;input id="input" placeholder="Ask anything..." /&gt;
+    &lt;button onclick="send()">Send&lt;/button&gt;
+    &lt;button onclick="voice()">🎤&lt;/button&gt;
+  &lt;/div&gt;
+</pre>
+
+    <pre id="css">
+
+
+body{
+  margin:0;
+  height:100vh;
+  background:radial-gradient(circle at top,#0f2027,#000);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-family:sans-serif;
+}
+
+.box{
+  width:420px;
+  height:650px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(18px);
+  border-radius:20px;
+  box-shadow:0 0 40px cyan;
+  display:flex;
+  flex-direction:column;
+}
+
+.header{
+  padding:15px;
+  background:linear-gradient(135deg,#00c6ff,#0072ff);
+  color:white;
+  text-align:center;
+  font-weight:bold;
+}
+
+.chat{
+  flex:1;
+  padding:10px;
+  overflow-y:auto;
+  color:white;
+}
+
+.input-area{
+  display:flex;
+  padding:10px;
+  background:rgba(0,0,0,0.3);
+}
+
+input{
+  flex:1;
+  padding:10px;
+  border:none;
+  border-radius:20px;
+  outline:none;
+}
+
+button{
+  margin-left:5px;
+  padding:10px 12px;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  background:cyan;
+  font-weight:bold;
+}
+
+.msg{
+  margin:5px;
+  padding:8px 12px;
+  border-radius:15px;
+}
+
+.user{background:#0072ff;align-self:flex-end;}
+.bot{background:#00c6ff;align-self:flex-start;}
+
+.btn1{
+  padding:8px 14px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,0.3);
+  background:rgba(255,255,255,0.1);
+  color:#fff;
+  text-decoration:none;
+  transition:0.3s;
+  margin-right: 70%;
+ 
+}
+.btn1:hover{
+  background-color: #0072ff;
+  color: white;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+.fa-youtube {
+  font-size: 40px;       /* icon size */
+  color: #FF0000;        /* YouTube red color */
+  transition: 0.3s;
+  margin: 5%;
+}
+
+.fa-youtube:hover {
+  color: #cc0000;        /* hover color */
+  transform: scale(1.2); /* zoom effect */
+}
+
+
+    </pre>
+
+   <pre id="js">
+
+&lt;/script&gt;
+
+let memory = { name:"" };
+
+// 🔊 SPEAK
+function speak(text){
+  let msg = new SpeechSynthesisUtterance(text);
+  msg.lang = "en-US";
+  speechSynthesis.speak(msg);
+}
+
+// 📩 SEND MESSAGE
+function send(){
+  let input = document.getElementById("input");
+  let text = input.value.trim();
+  if(text==="") return;
+
+  let chat = document.getElementById("chat");
+
+  // user message
+  chat.innerHTML += `<div class="msg user">${text}</div>`;
+
+  input.value = "";
+
+  reply(text.toLowerCase());
+
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// 🤖 AI LOGIC
+function reply(t){
+
+  let r = "";
+
+  if(t.includes("who made you") || t.includes("creator")){
+    r = "🤖 मलाई Adesh Chaudhary ले बनाउनु भएको हो।";
+  }
+
+  else if(t.includes("my name is")){
+    memory.name = t.split("is")[1].trim();
+    r = "Nice to meet you " + memory.name;
+  }
+
+  else if(t.includes("what is my name")){
+    r = memory.name ? "Your name is " + memory.name : "I don't know your name";
+  }
+
+  else if(t.includes("hello")){
+    r = "Hello 👋";
+  }
+
+  else if(t.includes("namaste")){
+    r = "नमस्ते 🙏";
+  }
+
+  else if(t.includes("how are you")){
+    r = "I am fine 😊";
+  }
+
+  else if(t.includes("what is ai")){
+    r = "AI means Artificial Intelligence 🤖";
+  }
+
+  else{
+    r = "🤖 I am learning... '"+t+"'";
+  }
+
+  setTimeout(()=>{
+
+    let chat = document.getElementById("chat");
+
+    chat.innerHTML += `<div class="msg bot">${r}</div>`;
+
+    speak(r);
+
+    chat.scrollTop = chat.scrollHeight;
+
+  },500);
+}
+
+// 🎤 VOICE INPUT
+function voice(){
+
+  if(!('webkitSpeechRecognition' in window)){
+    alert("Voice not supported");
+    return;
+  }
+
+  let rec = new webkitSpeechRecognition();
+  rec.lang = "en-US";
+  rec.start();
+
+  rec.onresult = function(e){
+    document.getElementById("input").value =
+    e.results[0][0].transcript;
+    send();
+  };
+}
+
+&lt;script&gt;
+    </pre>
+
+  </div>
+</div>
+
+<script>
+function showCode(type){
+  document.querySelectorAll('pre').forEach(p => p.classList.remove('active'));
+  document.getElementById(type).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function copyCode(){
+  const activeCode = document.querySelector('pre.active').innerText;
+  navigator.clipboard.writeText(activeCode);
+  const btn = document.querySelector(".copy-btn");
+  btn.innerText = "Copied!";
+  setTimeout(()=>{ btn.innerText = "Copy"; },2000);
+}
+</script>
+
+
+
+<script>
+
+let memory = { name:"" };
+
+// 🗣️ Speak
+function speak(text){
+  let msg = new SpeechSynthesisUtterance(text);
+  msg.lang = "en-US";
+  msg.rate = 1;
+  speechSynthesis.speak(msg);
+}
+
+// 💬 Send message
+function send(){
+  let input=document.getElementById("input");
+  let text=input.value.trim();
+  if(text==="")return;
+
+  document.getElementById("chat").innerHTML+=
+  `<div class='msg user'>${text}</div>`;
+
+  reply(text.toLowerCase());
+  input.value="";
+}
+
+// 🤖 AI LOGIC (CHATGPT STYLE)
+function reply(t){
+
+  let reply="";
+
+  // 👨‍💻 Developer
+  if(t.includes("who made you")||t.includes("creator")||t.includes("developed")){
+    reply="🤖 मलाई Adesh Chaudhary ले develop गर्नुभएको हो।";
+  }
+
+  // 🧠 Memory
+  else if(t.includes("my name is")){
+    memory.name = t.split("is")[1].trim();
+    reply="Nice to meet you "+memory.name+" 😊";
+  }
+  else if(t.includes("what is my name")){
+    reply = memory.name ? "Your name is "+memory.name : "I don't know yet 🤔";
+  }
+
+  // 🇳🇵 Nepali
+  else if(t.includes("namaste")) reply="नमस्ते 👋";
+  else if(t.includes("k xa")) reply="ठीक छु 😎 तपाईं कस्तो हुनुहुन्छ?";
+
+  // 🇬🇧 English
+  else if(t.includes("hello")) reply="Hello 👋 How can I help you?";
+  else if(t.includes("how are you")) reply="I am fine 😊";
+
+  // 📜 General AI style
+  else if(t.includes("what is ai")) reply="AI भनेको Artificial Intelligence हो 🤖";
+  else if(t.includes("what is javascript")) reply="JavaScript website बनाउने language हो 🌐";
+
+  // ❓ Smart fallback (ChatGPT feel)
+  else reply="🤖 मैले बुझें: '"+t+"' तर म अझै सिक्दैछु... कृपया फेरि सोध्नुहोस्";
+
+  setTimeout(()=>{
+
+    document.getElementById("chat").innerHTML+=
+    `<div class='msg bot'>${reply}</div>`;
+
+    speak(reply);
+
+  },400);
+}
+
+// 🎤 Voice input
+function voice(){
+
+  let rec = new (window.SpeechRecognition||window.webkitSpeechRecognition)();
+  rec.lang="en-US";
+  rec.start();
+
+  rec.onresult=function(e){
+    let text=e.results[0][0].transcript;
+    document.getElementById("input").value=text;
+    send();
+  };
+}
+
+</script>
+
+
+
+
+
+
+
+
+</body>
+</html>
