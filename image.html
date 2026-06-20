@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Gallery + Lightbox</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#0f172a;
+    min-height:100vh;
+    padding:30px;
+    display:flex;
+    justify-content:center;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    width:100%;
+    max-width:1200px;
+}
+
+/* CARD */
+.card{
+    position:relative;
+    aspect-ratio:9/16;
+    overflow:hidden;
+    border-radius:20px;
+    cursor:pointer;
+    transition:0.4s;
+}
+
+
+/* Animated text */
+#lightbox-text{
+    color:white;
+    font-size:28px;
+    text-align:center;
+    animation:fadeZoom 0.6s ease;
+    max-width:80%;
+}
+
+@keyframes fadeZoom{
+    from{
+        opacity:0;
+        transform:scale(0.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+/* RGB BORDER */
+.card::before{
+    content:"";
+    position:absolute;
+    inset:-20px;
+    background:conic-gradient(
+        red,orange,yellow,lime,cyan,blue,magenta,red
+    );
+    animation:rotate 4s linear infinite;
+    border-radius:22px;
+    z-index:-1;
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    inset:3px;
+    background:#0f172a;
+    border-radius:18px;
+    z-index:-1;
+}
+
+.card:hover{
+    transform:scale(1.05);
+}
+
+/* IMAGE */
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:18px;
+}
+
+/* OVERLAY */
+.overlay{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    padding:15px;
+    background:linear-gradient(transparent,rgba(0,0,0,0.8));
+    color:rgb(237, 238, 255);
+}
+
+/* LIGHTBOX */
+.lightbox{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:80%;
+    border-radius:10px;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:35px;
+    color:white;
+    cursor:pointer;
+}
+
+.nav{
+    position:absolute;
+    top:50%;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+    padding:0 20px;
+}
+
+@keyframes rotate{
+    to{transform:rotate(360deg);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="gallery">
+
+    
+
+     <a class="card" href="./C++/chapter.html" target="_blank">
+    <img src="https://scontent.fbir4-2.fna.fbcdn.net/v/t39.30808-6/726289902_1049145670784150_4081913935914294330_n.jpg?stp=dst-jpg_tt6&cstp=mx941x1672&ctp=s590x590&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEFPYiYk71_2r36O_Kg1pihpgUJx0nTW3OmBQnHSdNbcwnKwJcvAzADxh9Awy1s_cl3I1AUJlphNHia2ZkTdWn6&_nc_ohc=lCOZ4iJUhIIQ7kNvwH3XszH&_nc_oc=AdpcICEI94sZkl6GP99uilF8j4gMSHi8sa1l3s5rzrWqInL2yuXwMMe0dNU519ptOqM&_nc_zt=23&_nc_ht=scontent.fbir4-2.fna&_nc_gid=pmoaOErVSJuIsp8bBRC_9w&_nc_ss=7b2a8&oh=00_Af_CPDrbfv4789fn7gqMJf3JQsqSpCavNyrOAwA5Uhs5dg&oe=6A3B3E67" alt="C++">
+    
+    <div class="overlay">
+        <h2>Data Structure  </h2>
+        <p> & OOP Concepts Using C++</p>
+    </div>
+</a>
+
+    <a class="card" href="./Hardware-chapter.html" target="_blank">
+    <img src="https://scontent.fbir4-1.fna.fbcdn.net/v/t39.30808-6/727490460_1049144057450978_835944904775594870_n.jpg?stp=dst-jpg_tt6&cstp=mx941x1672&ctp=s941x1672&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeFijNymxsThNN9y8VMfJR_zUdKCaSXxLo9R0oJpJfEuj8XXQfGQz6bCFLq0bF5292lgj24yQcVfZIoFmHCg-S3W&_nc_ohc=wJqS5fd00boQ7kNvwHg8Ycw&_nc_oc=Adr26WMsDEqivn7Lf5hohd6quutrLq2_otnVuj9Nd3y6tOtSgIQYXN08dct44qwnObo&_nc_zt=23&_nc_ht=scontent.fbir4-1.fna&_nc_gid=pf-MurCMpo2Bg_NsuFKtFg&_nc_ss=7b2a8&oh=00_Af-9XAXGxiAk7bD8Ygc83ElBNHS4nEjKOc7XgHFxdbVe4A&oe=6A3B5057" alt="Hardware">
+    
+    <div class="overlay">
+        <h2>Computer Hardware</h2>
+    </div>
+</a>
+
+
+
+
+
+
+
+  <a class="card" href="./Digital-desinge-chapter.html" target="_blank">
+    <img src="https://scontent.fbir4-2.fna.fbcdn.net/v/t39.30808-6/724795385_1049144027450981_4633017191462924039_n.jpg?stp=dst-jpg_tt6&cstp=mx941x1672&ctp=s941x1672&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeG5MK3fmedQ_S2ZctYrGdlT_VS94s8AHcn9VL3izwAdyffH2-KYkWRKY1dBw7I4NAfGZR0_uAyDdppTITg2nw7r&_nc_ohc=VRuYE6BL5TkQ7kNvwHphdH7&_nc_oc=AdqS4VtmGoqp0th1ue17SDTnc-5a72rwOjAYYGFbYjrqwuX5x7t4UmGEmCgZ5p2y83o&_nc_zt=23&_nc_ht=scontent.fbir4-2.fna&_nc_gid=O1P1wReF_AqMPqx_-20_jw&_nc_ss=7b2a8&oh=00_Af9rHKFdPB_6CPRJfxiD7qpUySFi6Bsz-BJPhZSnEGYspg&oe=6A3B4A21" alt="Digital Desing">
+    
+    <div class="overlay">
+        <h2>Digital Desinge</h2>
+        <p>& Microprocessor</p>
+    </div>
+</a>
+
+
+
+ <a class="card" href="./Database/chapter.html" target="_blank">
+    <img src="https://scontent.fbir4-2.fna.fbcdn.net/v/t39.30808-6/726270095_1049145700784147_2654201785499736661_n.jpg?stp=dst-jpg_tt6&cstp=mx941x1672&ctp=s941x1672&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGv6CUH8lQWRuF2ZezlD9EswJRMWWOrubvAlExZY6u5u4zhM8Yt-c8WhNK5n_puX37avzsPxPLOKIdQ_ZV0cQ0G&_nc_ohc=HPnJJVUbDrYQ7kNvwEzNF_a&_nc_oc=AdqKW5ngsZDbyrSYOd9lRLtmLtXveL6QhAVqhfFlE72cyP8AItKPi689f30nZL4NCJw&_nc_zt=23&_nc_ht=scontent.fbir4-2.fna&_nc_gid=YtklTARH5M_rbVPVh_pA4g&_nc_ss=7b2a8&oh=00_Af-ruT-jzReZ8pb3SaFiKSf9-zkpyubRkuV2Hzt012B5qA&oe=6A3B3CD6" alt="Database">
+    
+    <div class="overlay">
+        <h2>Database</h2>
+        <p>Management system </p>
+    </div>
+</a>
+
+
+
+
+
+   
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">×</span>
+    <div class="nav">
+        <span onclick="prev()">❮</span>
+        <span onclick="next()">❯</span>
+    </div>
+    <img id="lightbox-img">
+</div>
+
+
+</body>
+</html>

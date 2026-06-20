@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Futuristic Button</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#1a2450;
+}
+
+.btn{
+    
+    padding:15px 250px;
+    border:none;
+    border-radius:60px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(20px);
+    color:#fff;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:1px;
+    cursor:pointer;
+    overflow:hidden;
+    transition:.2s;
+    box-shadow:
+    0 0 20px rgba(0,255,255,.2),
+    0 0 40px rgba(0,255,255,.1);
+    margin-bottom: 30%;
+    
+}
+
+.btn:hover{
+    transform:translateY(-6px) scale(1.05);
+    box-shadow:
+    0 0 25px #00ffff,
+    0 0 50px #00ffff,
+    0 0 80px #00ffff;
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+    border-radius:60px;
+    background:linear-gradient(
+        90deg,
+        #00ffff,
+        #00ff88,
+        #00ffff,
+        #0080ff,
+        #00ffff
+    );
+    background-size:400%;
+    z-index:-2;
+    animation:borderGlow 6s linear infinite;
+}
+
+.btn::after{
+    content:"";
+    position:absolute;
+    inset:2px;
+    border-radius:60px;
+    background:#0b1120;
+    z-index:-1;
+}
+
+@keyframes borderGlow{
+    0%{background-position:0%;}
+    100%{background-position:400%;}
+}
+
+.shine{
+    position:absolute;
+    top:0;
+    left:-150%;
+    width:80px;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.8),
+        transparent
+    );
+    transform:skewX(-25deg);
+}
+
+.btn:hover .shine{
+    animation:shine 1s forwards;
+}
+
+@keyframes shine{
+    100%{
+        left:200%;
+    }
+}
+
+.icon{
+    margin-right:10px;
+    font-size:24px;
+}
+
+.particles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.particle{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#00ffff;
+    animation:float 3s infinite;
+}
+
+@keyframes float{
+    0%{
+        opacity:0;
+        transform:translateY(20px) scale(0);
+    }
+    50%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+        transform:translateY(-50px) scale(1.5);
+    }
+}
+</style>
+</head>
+<body>
+
+<button class="btn" id="premiumBtn">
+    <span class="shine"></span>
+    <span class="icon">📚</span>
+    Computer      Book       Class      10 
+    <div class="particles"></div>
+</button>
+
+<script>
+const btn = document.getElementById("premiumBtn");
+const particles = document.querySelector(".particles");
+
+btn.addEventListener("mouseenter",()=>{
+
+    for(let i=0;i<20;i++){
+
+        const p=document.createElement("span");
+        p.classList.add("particle");
+
+        p.style.left=Math.random()*100+"%";
+        p.style.top=Math.random()*100+"%";
+        p.style.animationDuration=(Math.random()*2+2)+"s";
+
+        particles.appendChild(p);
+
+        setTimeout(()=>{
+            p.remove();
+        },3000);
+    }
+});
+
+btn.addEventListener("click",()=>{
+
+    btn.style.transform="scale(.92)";
+
+    setTimeout(()=>{
+        btn.style.transform="";
+        window.location.href="./image.html";
+    },150);
+});
+</script>
+
+</body>
+</html>
