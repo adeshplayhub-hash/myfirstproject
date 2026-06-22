@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Line Buttons</title>
+
+<style>
+
+*{
+    margin-bottom: 5%;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI", sans-serif;
+   
+}
+
+/* BODY */
+body{
+    min-height:100vh;
+   
+    background:#1a2450;
+
+    display:flex;
+    flex-direction:column;   /* 🔥 10 LINE layout */
+    justify-content:center;
+    align-items:center;
+
+    gap:15px;
+    padding:30px;
+}
+h1{
+    font-size:40px;
+    font-weight:800;
+    color:#fff;
+    text-align:center;
+    margin:20px 0;
+
+    /* glow effect */
+    text-shadow:
+    0 0 10px #00ffff,
+    0 0 20px #00ffff,
+    0 0 40px #00ffff;
+
+    /* animation */
+    animation:fadeIn 1.5s ease-in-out;
+}
+
+/* animation keyframes */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(-20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* BUTTON */
+.btn{
+    
+    display:block;
+    width:800px;
+    padding:15px;
+    margin:10px auto;
+
+    text-align:center;
+    text-decoration:none;   /* underline हटाने के लिए */
+
+    border-radius:50px;
+    background:rgba(255,255,255,0.05);
+    color:#fff;
+    font-weight:700;
+
+    box-shadow:0 0 15px rgba(0,255,255,0.2);
+    transition:0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.08);
+    box-shadow:0 0 25px #00ffff,0 0 50px #00ffff;
+}
+
+</style>
+</head>
+<h1> Choose a Chpter</h1>
+
+<body>
+
+<a href="./C++ Chapter 1.pdf" class="btn">DDM BOOK 📚 Chapter 1 </a>
+<a href="./c++ Chapter 2.pdf" class="btn">DDM BOOK 📚 Chapter 2 </a>
+<a href="hardware.html" class="btn">C++ BOOK 📚 Chapter 3 </a>
+<a href="ds.html" class="btn">C++ BOOK 📚 Chapter 4 </a>
+<a href="dbms.html" class="btn">C++ BOOK 📚 Chapter 5 </a>
+<a href="electronics.html" class="btn">C++ BOOK 📚 Chapter 6 </a>
+<a href="cpp.html" class="btn">C++ BOOK 📚 Chapter 7 </a>
+
+
+
+</body>
+</html>
